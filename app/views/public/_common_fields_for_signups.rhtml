@@ -1,0 +1,44 @@
+<p>
+  ¿Cuál es el nombre de tu empresa u organización? *<br />
+  <%= text_field :account, :name, :size => 40, :class => "formField" %>
+  <%= errors_for_attr :account, :name %>
+</p>
+
+<p>
+  Elige una dirección personalizada para tu página de acceso *<br />
+  http://
+  <%= text_field :account, :short_name, :class => "formField", :style => 'text-align: center;', :onkeypress => 'autofit(this)', :onchange => 'autofit(this); check_availability_of_short_name(this)' %>
+  .<%=h @account_domain %> <span id="available"><!-- for Ajax --></span>
+  <%= errors_for_attr :account, :short_name %>
+</p>
+<script type="text/javascript" charset="utf-8">
+  Event.observe(window, 'load', function () { autofit($('account_short_name')) });
+</script>
+<table width="500" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50%" valign="top">
+      Email de contacto *<br />
+      <%= text_field :account_owner, :email, :size => 20, :class => 'formField' %>
+      <%= errors_for_attr :account_owner, :email %>
+    </td>
+    <td width="50%">
+      Confirmar Email *<br />
+      <%= text_field :account_owner, :email_confirmation, :size => 20, :class => "formField" %>
+    </td>
+  </tr>
+</table>
+
+<table width="500" border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top">
+    <td width="50%">
+      Contraseña *<br />
+      <%= password_field :account_owner, :password, :size => 20, :class => 'formField' %>
+      <%= errors_for_attr :account_owner, :password %>
+    </td>
+    <td width="50%">
+      Confirmar contraseña *<br />
+      <%= password_field :account_owner, :password_confirmation, :size => 20, :class => "formField" %>
+    </td>
+  </tr>
+</table>
+

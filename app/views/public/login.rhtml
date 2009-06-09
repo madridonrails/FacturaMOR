@@ -1,0 +1,35 @@
+<div class="Title24Orange" id="titlearea">
+  Login
+</div>
+
+<div id="highlightareaAyuda">
+  <div id="textareaAyuda">
+    <p class="Title18Grey">
+      Rellena los campos a continuación para acceder a tu cuenta <%= APP_NAME %>:
+    </p>
+    <%= render :partial => 'login_form' %>
+
+    <p style="width: 750px; height: 20px; border-bottom: 1px solid #ccc"></p>
+
+    <p class="Text16greyHelp">
+      En <%= APP_NAME %> cada cuenta tiene su URL privada de la forma
+      <strong>http://<em>alias_de_cuenta</em>.<%= DOMAIN_NAME %></strong><br />
+      por donde también puedes acceder.
+    </p>
+    <p class="Text16greyHelp">
+      Si no recuerdas el alias de tu cuenta, danos tu email y
+      te enviaremos de nuevo tus datos de entrada.
+    </p>
+    
+    <%= render :partial => 'accounts_reminder_form' %>
+
+    <p class="Text16greyHelp">
+      Si no recuerdas el email con el que creaste tu cuenta ponte en contacto con nosotros en
+      <%= mail_to CONTACT_EMAIL_ACCOUNTS, "<span class=\"Text18Orange\">#{CONTACT_EMAIL_ACCOUNTS}</span>", :encode => 'javascript' %>
+      y te ayudaremos.
+    </p>
+    <br />
+    <br />
+    <br />
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<span class="Text13Grey">
+<%=
+  [
+    street1,
+    street2,
+    "#{postal_code} #{city}",
+    "#{province} (#{country_name})"
+  ].delete_if(&:blank?).map{|x| h(x) }.join("<br />")
+%>
+</span>

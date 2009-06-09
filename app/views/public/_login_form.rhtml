@@ -1,0 +1,38 @@
+<p class="error"><%= flash[:notice]%></p>
+<% form_tag do -%>
+<table width="500" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="Title14Orange">Email</td>
+  </tr>
+  <tr>
+    <td class="Text13Grey">
+      <%= text_field_tag 'login', params[:login], :class => "formField autocomplete" %>
+    </td>
+  </tr>
+</table>
+
+<br />
+
+<table width="500" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="Title14Orange">Contrase&ntilde;a</td>
+  </tr>
+  <tr>
+    <td class="Text13Grey">
+      <%= password_field_tag 'password', nil, :class => "formField" %>
+    </td>
+  </tr>
+</table>
+
+<br />
+
+<table width="500"  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      <span class="CellTablebuttonL">
+        <%= submit_tag 'Acceder', :class => 'button' %>
+      </span>
+    </td>
+  </tr>
+</table>
+<% end %>

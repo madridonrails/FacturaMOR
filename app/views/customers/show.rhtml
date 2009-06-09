@@ -1,0 +1,80 @@
+<div id="FacturaDatos">
+  <table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <%= colgroup_for_data_tables %>
+    <tr>
+      <td class="Text13OrangeRight"><strong>Nombre</strong></td>
+      <td class="Text13Grey"><%=h @customer.name %></td>
+    </tr>
+    <tr>
+      <td class="Text13OrangeRight"><strong>NIF/CIF</strong></td>
+      <td class="Text13Grey"><%=h @customer.cif %></td>
+    </tr>
+    <tr>
+      <td valign="top" class="Text13OrangeRight"><strong>Dirección</strong></td>
+      <td class="Text13Grey" valign="top">
+        <%= render(
+              :partial => 'shared/address',
+              :locals => {
+                :street1      => @customer.address.street1,
+                :street2      => @customer.address.street2,
+                :postal_code  => @customer.address.postal_code,
+                :city         => @customer.address.city,
+                :province     => @customer.address.province,
+                :country_name => @customer.address.country.name
+              }
+            )
+        %>
+      </td>
+    </tr>
+    <tr>
+      <td class="Text13OrangeRight"><strong>Descuento</strong></td>
+      <td class="Text13Grey"><%= format_percent(@customer.discount_percent) %></td>
+    </tr>
+    <tr>
+      <td valign="top" class="Text13OrangeRight"><strong>Notas</strong></td>
+      <td class="Text13Grey"><%= x_simple_format @customer.notes %></td>
+    </tr>
+    <% if can_write? %>
+    <tr>
+      <td class="Text13OrangeRight" valign="top"><strong>Dirección de consulta</strong></td>
+      <td class="Text13Grey" valign="top">
+        <span id="login_url"><%= login_url_for_customer(@customer) %></span>
+        <%= help "Copia y envía este enlace a #{@customer.name}<br />si quieres que pueda consultar y descargar sus facturas." %>
+        <br />
+        <%= mail_to nil, '[ Enviar por mail ]', :subject => @subject, :body => @body %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  
+  <br /><br />
+
+  <% name = h(@customer.name) %>
+  <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+    <tr class="table-row-odd">
+      <% if can_write? %>
+      <td align="center" class="Text13Grey">
+        <% icon = image_tag('icon-facturar2.gif', :width => 16, :height => 16) %>
+        <%= link_to_new_invoice_for  "#{icon} Facturar", @customer %>
+      </td>
+      <% end %>
+      <td align="center" class="Text13Grey">
+        <% icon = image_tag('icon-ver.gif', :width => 16, :height => 16) %>
+        <%= link_to "#{icon} Ver facturas", :controller => 'invoices', :action => 'of', :id => @customer %>
+      </td>
+      <% if can_write? %>
+      <td align="center" class="Text13Grey">
+        <% icon = image_tag('icon-editar.gif', :width => 16, :height => 16) %>
+        <%= link_to "#{icon} Cambiar datos", :action => 'edit', :id => @customer %>
+      </td>
+      <% if @customer.can_be_destroyed? %>
+      <td align="center" class="Text13Grey">
+        <% icon = image_tag('icon-borrar.gif', :width => 16, :height => 16) %>
+        <%= link_to "#{icon} Borrar", {:action => 'destroy', :id => @customer}, {:confirm => "Esta acción es irreversible.\n¿Está seguro de que desea borrar este cliente?", :method => :post} %>
+      </td>      
+      <% end %>
+      <% end %>
+    </tr>
+  </table>
+</div>
+

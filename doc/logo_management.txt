@@ -1,0 +1,37 @@
+FACTURAgem: Logo Management
+---------------------------
+
+In FACTURAgem each account may have a logo. If an account has a logo, it is
+inserted in invoices.
+
+We do not maintain a history of customers data, if for example they change
+their address no versioning of the customers table is performed, but we do
+store everything in invoices as they were created/edited, to be able to
+reproduce them at any point in the future.
+
+This rationale applies to logos, but they are not the same as strings, so a
+few important considerations are needed:
+
+  1. we need the logo as a file for pdflatex
+
+  2. logos are images, we should be careful about the space they need
+
+Since logos are images and we need them for pdflatex as files we will store them as files.
+
+Since we do not have a history of logos per account, and each new invoice can
+only use the current logo, we will store one logo per customer, and create
+hard links to it per new invoice. This way, if an account has uploaded two
+logos since it uses the application, whose size adds say 150K, even if it has
+hundreds of invoices the logos will be kept at 150K and at the same time they
+all invoices will be reproducible as they were created.
+
+Additionally, different environments need different disk locations, so we end
+with this layout
+
+  RAILS_ROOT/logos/<environment>/accounts
+  RAILS_ROOT/logos/<environment>/invoices
+
+By now we won't create subdirectories, if there are too much files we will
+modify this layout to create some partitions.
+
+

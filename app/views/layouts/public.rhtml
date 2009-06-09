@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-language" content="es" />
+    <meta name="copyright"    content="Copyright 2007 ASPgems" />
+    <meta name="description"  content="Aplicacion para facturacion on-line" />
+    <meta name="keywords"     content="programa de facturas, autonomo, autonomos, pymes, factura, facturas, facturas online, facil" />
+    <meta name="robots"       content="index,follow" />
+    <meta name="language"     content="ES" />
+    <meta name="distribution" content="global" />
+    <meta name="abstract"     content="<%= APP_NAME %> es una aplicacion on-line con la que resulta muy sencillo facturar y compartir tus facturas con clientes y gestorias de manera segura" />
+
+    <title><%= APP_NAME %>: servicio on-line para facturación</title>
+  
+    <!-- favicon, following the guidelines in http://en.wikipedia.org/wiki/Favicon -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/rss+xml" title="ROR" href="ror.xml" />
+  
+    <%= stylesheet_link_tag 'structure', :media => 'all' %>
+    <%= stylesheet_link_tag 'type',      :media => 'all' %>
+    
+    <%= javascript_include_tag :defaults %>
+  </head>
+  <body>
+    <div id="main">
+      <div id="header2">
+        <div id="headerleft">
+          <%= facturagem_logo_linked_to_home %>
+        </div>
+        <div id="headerright2">
+          <%# force the following LIs to be in a single line, because otherwise grey bars appear in between %>
+          <% 
+            menu = [
+              %w(public index   INICIO),
+              %w(tour   index   TOUR),
+              %w(help   index   AYUDA),
+              %w(public contact CONTACTO),
+              %w(public signup  REGISTRO),
+              %w(public login   LOGIN)
+            ].map do |controller, action, label|
+              # Use full URLs in case we are not in the home.
+              "<li>#{link_to label, :controller => controller, :action => action, :host => "www.#{account_domain}", :only_path => false}</li>"
+            end.join("<li>#{image_tag "grey-px.gif", :width => 1, :height => 1}</li>")
+          %>
+          <ul><%= menu %></ul>
+        </div>
+      </div>
+      
+      <div id="content">
+        <%= yield %>
+      </div>
+      
+      <br />
+      <div class="FooterText" id="foot">
+        <%= render :partial => 'shared/footer' %>
+      </div>
+    </div>
+  </body>
+</html>

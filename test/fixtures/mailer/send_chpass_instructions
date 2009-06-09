@@ -1,0 +1,3 @@
+Mailer#send_chpass_instructions
+
+Find me in app/views/mailer/send_chpass_instructions.rhtml

@@ -1,0 +1,11 @@
+<div id="FacturaDatos">
+  <!-- this is a proof of concept, that's why it has inline style -->
+  <p class="Text13Grey" style="padding: 10px 20px 10px 20px; margin: 10px 10px 5px 10px; background-color: #E6E3D7">
+    Por favor, dinos con qué datos facturas: tu nombre, dirección, NIF/CIF, si descuentas IRPF, etc.
+    Para personalizar tus facturas puedes también subir un logo si lo deseas.
+  </p>
+  <% form_tag({}, :multipart => true) do %> <%# no :id needed because there's only one fiscal data per account %>
+  <%= render :partial => 'form' %>
+  <%= render :partial => 'shared/cancel_submit', :locals => {:cancel_url => url_for(:action => 'index'), :submit_label => 'Configurar tus datos'}%>
+  <% end %>
+</div>

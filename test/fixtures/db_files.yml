@@ -1,0 +1,14 @@
+# == Schema Information
+# Schema version: 7
+#
+# Table name: db_files
+#
+#  id   :integer(11)   not null, primary key
+#  data :binary        
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+two:
+  id: 2

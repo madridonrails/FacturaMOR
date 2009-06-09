@@ -1,0 +1,71 @@
+﻿<div class="Title24Orange" id="titlearea">
+  <%= link_to 'Ayuda', :action => 'index' %>
+  <span class="Text18Orange">&gt;</span>
+  Acerca de <%= APP_NAME %>
+</div>
+
+<div id="highlightareaAyuda">
+  <div id="textareaAyuda">
+    <div class="Text13Grey HelpItem">
+	    <span class="Title18OrangeHelp" id="como_nace">¿Cómo nace <%= APP_NAME %>?</span> 
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      <%= APP_NAME %> es el resultado de la frustración que nos produce facturar a
+      los que tenemos que hacer entre 20 y 30 facturas al mes. Probablemente
+      si tienes que hacer más de 20 o 30 facturas necesites alguno de los
+      muchos programas de facturación que hay en el mercado. Pero estos
+      programas son complejos, y con ninguno puedes empezar a facturar
+      tan rápida y sencillamente como con <%= APP_NAME %>. Éste era uno de los
+      objetivos clave de diseño del programa y hemos puesto todo nuestro empeño en
+      conseguirlo. La facturación es más fácil incluso que con una hoja de cálculo.
+    </div>
+  
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="asp">¿Qué es un ASP?</span>
+      <%= ir_al_principio %>    
+	    <%= help_answer_separator %>
+      ASP son las siglas de &laquo;Application Service Provider&raquo;, en castellano
+      &laquo;proveedor de aplicaciones como servicios&raquo;, y describe aquellas
+      aplicaciones informáticas que son utilizadas por los clientes como un servicio.
+      Sus ventajas fundamentales son:
+      <!-- override the naked style inherited at this point for lists -->
+      <ul>
+        <li>Pagas sólo según lo usas, no hay inversión.</li>
+        <li>Sin instalación: tú te olvidas y nosotros nos encargamos de toda la parte técnica.</li>
+        <li>Sin mantenimiento: sigue olvidándote de los detalles, nosotros nos ocupamos.</li>
+        <li>Modelo en red de acceso: disfruta de la ventajas de las aplicaciones en la red, 
+        accesible en cualquier momento, desde cualquier ordenador, sólo necesitas un navegador.
+        Y además puedes dar acceso restringido a la aplicación a tus clientes o a tu gestor.</li>
+      </ul>
+    </div>
+    
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="demo">¿Puedo ver una demo?</span> 
+      <%= ir_al_principio %>    
+	    <%= help_answer_separator %>
+      Pues casi mejor que una demo REGíSTRATE GRATIS y usa la aplicación entera.      
+    </div> 
+    
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="puedo_usar">¿Puedo usar <%= APP_NAME %> sin estar en España?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      Sí, puedes usar la aplicación desde cualquier lugar. <%= APP_NAME %> soporta dos tipos
+      de impuestos no obstante, IVA e IRPF, según la legislación vigente en España, y
+      por el momento sólo emite ese tipo de facturas.
+    </div> 
+       
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="cuanto_tiempo">¿Cuánto tiempo guardáis mis facturas?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+	    Siempre, salvo que tú indiques lo contrario. Tus facturas estarán guardadas en nuestros
+	    servidores hasta que tú decidas que las borremos, o lo hagas tú mismo a través de la
+	    aplicación. Siempre de acuerdo con la legislación vigente.
+	  </div>
+	  
+	  <%= date_una_vuelta_o_registrate %>
+  </div>  
+</div>
+
+

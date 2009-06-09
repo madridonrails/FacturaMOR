@@ -1,0 +1,2 @@
+page["invoice_paid_status_#{@invoice.url_id}"].replace_html invoice_paid_toggler(@invoice)
+page.replace_html 'pending', :partial => 'shared/top_status'

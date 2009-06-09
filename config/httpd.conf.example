@@ -1,0 +1,39 @@
+# This is the recommend MIME type according to http://en.wikipedia.org/wiki/Favicon.
+AddType image/vnd.microsoft.icon .ico
+
+Include /home/facturagem/current/config/httpd_proxy.conf
+
+# The following are default SSL parameters based on the example .conf for SSL
+# under apache2/conf/extras.
+Listen 443
+
+AddType application/x-x509-ca-cert .crt
+AddType application/x-pkcs7-crl    .crl
+
+SSLPassPhraseDialog    builtin
+SSLSessionCache        shmcb:/usr/local/apache2/logs/ssl_scache(512000)
+SSLSessionCacheTimeout 300
+SSLMutex               file:/usr/local/apache2/logs/ssl_mutex
+
+<VirtualHost _default_:443>
+  ServerAdmin admin@facturagem.com
+  ServerName  facturagem.com
+  ServerAlias *.facturagem.com
+
+  Include /home/facturagem/current/config/httpd_common.conf
+  Include /home/facturagem/current/config/httpd_ssl.conf
+
+  ErrorLog /home/facturagem/current/log/apache_ssl_error_log
+  CustomLog /home/facturagem/current/log/apache_ssl_access_log combined
+</VirtualHost>
+
+<VirtualHost *:80>
+  ServerAdmin admin@facturagem.com
+  ServerName  facturagem.com
+  ServerAlias *.facturagem.com
+
+  Include /home/facturagem/current/config/httpd_common.conf
+
+  ErrorLog /home/facturagem/current/log/apache_error_log
+  CustomLog /home/facturagem/current/log/apache_access_log combined  
+</VirtualHost>

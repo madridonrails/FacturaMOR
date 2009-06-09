@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-language" content="es" />
+    <meta name="copyright"    content="Copyright 2007 ASPgems" />
+    <meta name="description"  content="Aplicacion para facturacion on-line" />
+    <meta name="keywords"     content="programa de facturas, autonomo, autonomos, pymes, factura, facturas, facturas online, facil" />
+    <meta name="robots"       content="index,follow" />
+    <meta name="language"     content="ES" />
+    <meta name="distribution" content="global" />
+    <meta name="abstract"     content="<%= APP_NAME %> es una aplicacion on-line con la que resulta muy sencillo facturar y compartir tus facturas con clientes y gestorias de manera segura" />
+
+    <title><%= APP_NAME %>: servicio on-line para facturación</title>
+  
+    <!-- favicon, following the guidelines in http://en.wikipedia.org/wiki/Favicon -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  
+    <%= stylesheet_link_tag 'structure',   :media => 'all' %>
+    <%= stylesheet_link_tag 'type',        :media => 'all' %>
+    <%= stylesheet_link_tag 'redbox',      :media => 'all' %>
+    <%= stylesheet_link_tag 'datepicker',  :media => 'all' %>
+
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag 'redbox', 'builder', 'datepicker' %> <%# builder is needed by datepicker %>
+  </head>
+  <body>
+    <%# Note this is the exact place wz_tooltip is recommended to be placed. Do not move it to HEAD. %>
+    <%= javascript_include_tag 'wz_tooltip/wz_tooltip' %>
+    <div id="main">
+      <div id="header">
+        <div id="headerleft">
+          <%= facturagem_logo_linked_to_home %>
+        </div>
+        <div id="headerright" class="toplinks">
+          <%= link_to('Desconectar', :controller => 'account', :action => 'logout') %><br><!-- <img src="/images/logo-cathedral.jpg" /> -->
+        </div>
+        <div id="headermenu">
+          <div id="pestanas">
+            <ul>
+              <% if can_write? %>
+              <li <%= "id=current" if @current_controller == 'invoices' && (@current_action == 'new' || @current_action == 'create') %>><%= link_to 'Nueva Factura', :controller => 'invoices', :action => 'new', :from => nil, :id => nil %></li>
+              <% end %>
+              <li <%= "id=current" if @current_controller == 'invoices' && @current_action != 'new' && @current_action != 'create' %>><%= link_to 'Facturas', :controller => 'invoices', :action => 'list' %></li>
+              <% if can_read_all? %>
+              <li <%= "id=current" if @current_controller == 'customers' %>><%= link_to 'Clientes', :controller => 'customers', :action => 'list' %></li>
+              <% end %>
+              <% if can_write? %>
+              <li <%= "id=current" if @current_controller == 'fdata' %>><%= link_to 'Mis datos', :controller => 'fdata', :action => 'show' %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+            
+      <div id="content">
+        <%= render :partial => 'shared/announcement' if @announcement %>
+
+        <div id="column1">
+          <div id="topPage"></div>
+          <div id="middlePage">
+            <%= yield %>
+          </div>
+          <div id="bottPage"></div>
+        </div>
+
+        <div id="column2">
+          <%= render :partial => 'shared/right_content' %>
+        </div>
+      </div>
+      
+      <div class="FooterText" id="foot">
+        <%= render :partial => 'shared/footer' %>
+      </div>
+    </div>
+  </body>
+</html>

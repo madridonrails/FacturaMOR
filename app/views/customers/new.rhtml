@@ -1,0 +1,4 @@
+<%= form_tag %>
+  <%= render :partial => 'form' %>
+  <%= render :partial => 'shared/cancel_submit', :locals => {:cancel_url => url_for(:action => 'list'), :submit_label => 'Crear cliente'} %>
+<%= end_form_tag %>

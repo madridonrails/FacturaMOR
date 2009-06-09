@@ -1,0 +1,113 @@
+<%# at this moment the owner is only used when editing %>
+<% @owner = @fiscal_data.account.owner %>
+
+<table width="100%"  border="0" cellspacing="10" cellpadding="0">
+  <%= colgroup_for_data_tables %>
+  <% if @current_action == 'edit' %>
+  <tr>
+    <td class="Text13OrangeRight" valign="top"><label for="fiscal_data_name"><strong>Contraseña</strong></label></td>
+    <td valign="top">
+      <%= password_field :current_password, '' %><br />
+      <span class="Text13Grey"><em>Para cambiar estos datos es necesario que entres tu contraseña</em></span>
+      <% if @wrong_password %>
+      <br /><span class="error">la contraseña no es correcta</span>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+  <tr>
+    <td class="Text13OrangeRight"><label for="fiscal_data_name"><strong>Nombre</strong></label></td>
+    <td>
+      <%= text_field :fiscal_data, :name, :class => 'TableUnderline' %>
+      <%= help "Si lo desea puede facturar a nombre de una empresa<br />distinta de la que figura en los datos de la cuenta."%>
+      <%= errors_for_attr :fiscal_data, :name %>
+    </td>
+  </tr>
+  <% if @current_action == 'edit' %>
+  <tr>
+    <td class="Text13OrangeRight"><label for="fiscal_data_name"><strong>Email</strong></label></td>
+    <td>
+      <%= text_field :owner, :email, :class => 'TableUnderline', :onchange => "if (!$('email_confirmation_row').visible()) {$('owner_email_confirmation').value = ''; $('email_confirmation_row').show(); $('owner_email_confirmation').focus();}" %>
+      <%= errors_for_attr :owner, :email %>
+    </td>    
+  </tr>
+  <tr id="email_confirmation_row" <%= 'style="display: none;"' unless @show_email_confirmation %>>
+    <td class="Text13OrangeRight"><label for="fiscal_data_name"><strong>Confirmar email</strong></label></td>
+    <td>
+      <%= text_field :owner, :email_confirmation, :class => 'TableUnderline' %>
+      <%= errors_for_attr :owner, :email_confirmation %>
+    </td>    
+  </tr>
+  <tr>
+    <td valign="top" class="Text13OrangeRight">
+      <strong>Dirección de consulta</strong>
+    </td>
+    <td valign="top">
+      <select name="change_login_url_for_agencies">
+        <option value="0" <%= 'selected="selected"' if params[:change_login_url_for_agencies] == '0' %>>Dejar la actual como está</option>
+        <option value="1" <%= 'selected="selected"' if params[:change_login_url_for_agencies] == '1' %>>Invalidar la actual y generar una nueva</option>
+      </select>
+    </td>    
+  </tr>
+  <% end %>
+  <tr>
+    <td class="Text13OrangeRight"><label for="logo_uploaded_data"><strong>Logo</strong></label></td>
+    <td>
+      <%= file_field_tag 'logo[uploaded_data]', :id => 'logo_uploaded_data' %>
+      <% unless @fiscal_data.logo.nil? %>
+        <% @fiscal_data.logo.errors.each do |attr, msg| %>
+          <% if attr.to_s == 'size' %>
+            <br />
+            <span class="error">el logo no puede superar los 500 KB</span>
+          <% elsif attr.to_s == 'base' %>
+            <br />
+            <span class="error"><%=h msg %></span>
+          <% end %>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+  <% @address = @fiscal_data.address || Address.new %>
+  <%= render :partial => 'shared/address_form' %>
+  <tr>
+    <td class="Text13OrangeRight"><label for="fiscal_data_cif"><strong>NIF/CIF</strong></label></td>
+    <td>
+      <%= text_field :fiscal_data, :cif, :class => 'TableUnderline' %>
+      <%= errors_for_attr :fiscal_data, :cif %>
+    </td>
+  </tr>
+
+  <%#
+    The flag charges_irpf can only be set the first time an account creates
+    its fiscal data. That's why we treat new records in a special way.
+  %>  
+  <% if @fiscal_data.new_record? || @fiscal_data.account.invoices.empty? %>
+  <tr>
+    <td class="Text13OrangeRight"><label for="fiscal_data_charges_irpf">
+      <strong>¿IRPF?</strong>
+    </td>
+    <td>
+      <%= select :fiscal_data, :charges_irpf, [['Ninguna de mis facturas lleva retención de IRPF', false], ['Todas o algunas de mis facturas llevan retención de IRPF', true]], {}, :onchange => "if ($F(this) == 'true') { $('irpf_percent').show(); $('fiscal_data_irpf_percent').activate()} else {$('irpf_percent').hide()}", :class => 'outline' %>
+      <span id="irpf_percent"<%= @fiscal_data.charges_irpf? ? '' : ' style="display: none"' %>>
+        &nbsp;&nbsp;<span class="Text13Grey">¿Cuánto?</span>&nbsp;<%= text_field :fiscal_data, :irpf_percent, :size => 5, :class => 'numeric' %> <span class="Text13Grey">%</span>
+      </span>
+      <%= help %Q{La administración o tu gestoría te dirán si necesitas descontar IRPF en tus facturas y, en tal caso, cuánto.} %>
+    </td>
+    <%= errors_for_attr :fiscal_data, :charges_irpf %>
+  </tr>
+  <% elsif @current_account.charges_irpf? %>
+  <tr>
+    <td class="Text13OrangeRight"><label for="fiscal_data_irpf_percent"><strong>IRPF</strong></label></td>
+    <td><%= text_field :fiscal_data, :irpf_percent, :value => format_integer_or_decimal(@fiscal_data.irpf_percent), :size => 3, :class => 'TableUnderline numeric' %> <span class="Text13Grey">%</span></td>
+  </tr>
+  <% end %>
+  
+  <tr>
+    <td class="Text13OrangeRight"><label for="fiscal_data_iva_percent"><strong>IVA</strong></label></td>
+    <td><%= text_field :fiscal_data, :iva_percent, :value => format_integer_or_decimal(@fiscal_data.iva_percent), :size => 3, :class => 'TableUnderline numeric' %> <span class="Text13Grey">%</span></td>
+  </tr>
+  <tr>
+    <td valign="top" class="Text13OrangeRight"><label for="fiscal_data_invoice_footer"><strong>Pie de factura</strong></label></td>
+    <td valign="top"><%= text_area :fiscal_data, :invoice_footer, :class => 'TableOutline', :rows => 3, :style => 'width: 95%' %></td>
+  </tr>
+</table>

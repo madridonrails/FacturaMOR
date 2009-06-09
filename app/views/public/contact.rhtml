@@ -1,0 +1,68 @@
+<div class="Title24Orange" id="titlearea">
+  Contacto
+</div>
+
+<div id="highlightareaAyuda">
+  <div id="textareaAyuda"> 
+    <p class="Title18Grey">Si tienes cualquier duda ponte en contacto con nosotros:</p>
+    <table width="500" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="13"><%= image_tag "icon-arrow2.gif", :width => 13, :height => 13 %></td>
+        <td class="Title14Orange">Dudas sobre <%= APP_NAME %></td>
+      </tr>
+      <tr>
+        <td width="13">&nbsp;</td>
+        <td class="Text13Grey">
+          <strong><%= mail_to CONTACT_EMAIL_INFORMATION, nil, :encode => 'javascript' %></strong>
+        </td>
+      </tr>
+    </table>
+    
+    <br />
+    
+    <table width="500" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="13"><%= image_tag "icon-arrow2.gif", :width => 13, :height => 13 %></td>
+        <td class="Title14Orange">Dudas con tu cuenta de <%= APP_NAME %></td>
+      </tr>
+      <tr>
+        <td width="13">&nbsp;</td>
+        <td class="Text13Grey">
+          <strong><%= mail_to CONTACT_EMAIL_ACCOUNTS, nil, :encode => 'javascript' %></strong>
+        </td>
+      </tr>
+    </table>
+    
+    <br />
+
+    <table width="500" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="13"><%= image_tag "icon-arrow2.gif", :width => 13, :height => 13 %></td>
+        <td class="Title14Orange">Dudas sobre tus facturas</td>
+      </tr>
+      <tr>
+        <td width="13">&nbsp;</td>
+        <td class="Text13Grey">
+          <strong><%= mail_to CONTACT_EMAIL_INVOICES, nil, :encode => 'javascript' %></strong>
+        </td>
+      </tr>
+    </table>
+    
+    <br />
+
+    <table width="500" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="13"><%= image_tag "icon-arrow2.gif", :width => 13, :height => 13 %></td>
+        <td class="Title14Orange">Otras dudas</td>
+      </tr>
+      <tr>
+        <td width="13">&nbsp;</td>
+        <td class="Text13Grey">
+          <strong><%= mail_to CONTACT_EMAIL_OTHERS, nil, :encode => 'javascript' %></strong>
+        </td>
+      </tr>
+    </table>
+    
+    <br />
+  </div>
+</div>

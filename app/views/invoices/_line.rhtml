@@ -1,0 +1,19 @@
+<tr class="<%= cycle 'table-row-even', 'table-row-odd' %>">
+  <td class="TextTable13LightGreyLeft numeric"><%= @amounts_formatter.call(line.amount) %></td>
+  <td class="TextTable13LightGreyLeft text"><%=h line.description %></td>
+  <td class="TextTable13LightGreyCenter numeric" nowrap="nowrap"><%= @prices_formatter.call(line.price) %></td>
+  <td class="TextTable13LightGreyCenter numeric" nowrap="nowrap"><span class="TableResult"><%= @totals_formatter.call(line.total) %></span></td>
+  <% if for_edition %>
+  <td class="Text11lightgrey CellWithActions" nowrap="nowrap">
+    <%= link_to_remote 'Modificar', {:url => {:action => 'edit_line', :nline => line_counter}, :submit => 'invoice-form'} %>&nbsp;<%= link_to_remote image_tag('icon-borrar.gif', :style => 'vertical-align: middle'), {:url => {:action => 'delete_line', :nline => line_counter}, :submit => 'invoice-form'} %>
+  </td>
+  <% end %>
+</tr>
+<% if for_edition %>
+<tr style="display: none">
+  <td><%= text_field_tag 'amount[]',      h(line.amount),      :id => nil %></td>
+  <td><%= text_field_tag 'description[]', h(line.description), :id => nil %></td>
+  <td><%= text_field_tag 'price[]',       h(line.price),       :id => nil %></td>
+  <%# line total is not needed in the form itself %>
+</tr>
+<% end %>

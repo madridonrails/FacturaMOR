@@ -1,0 +1,80 @@
+\documentclass[a4paper, 10pt]{article}
+
+% use less wide margins
+\usepackage{fullpage}
+
+% we output invoices in Spanish
+\usepackage[spanish]{babel}
+
+% expect input encoding to be UTF8
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+% provides the euro symbol among others
+\usepackage{textcomp}
+
+% provides some help in getting the widths in the table as we want
+\usepackage{tabularx}
+\renewcommand{\tabularxcolumn}[1]{r}
+
+% use sans-serif as default font
+\renewcommand{\familydefault}{\sfdefault}
+
+% standard package to work with multiple columns, used for the header
+\usepackage{multicol}
+
+% standard package to use colors
+\usepackage[pdftex]{xcolor}
+\usepackage{colortbl}
+
+% do not indent paragraphs
+\setlength{\parindent}{0em}
+
+% put this much space between paragraphs
+\setlength{\parskip}{.7em}
+
+% this values are the same ones we use in the front-end
+\definecolor{mygray}{HTML}{555555}
+\definecolor{myblue}{HTML}{A8B7CF}
+
+\begin{document}
+% do not output the page number
+\thispagestyle{empty}
+
+% set mygray as current default color for text
+\color{mygray}
+
+\begin{multicols}{2}
+\textbf{ASPgems S.L.}\\
+Pradillo, 5 \\
+28002 Madrid \\
+Madrid (España) \\
+B-84741164
+
+Factura: 2007-006
+  
+Fecha: 6 de marzo de 2007  
+  
+\columnbreak
+
+\textbf{Agip España}\\
+Anabel Segura, 16 \\
+Edificio Vega Norte I \\
+28108 Alcobendas \\
+Madrid (España) \\
+A-28188464
+\end{multicols}
+
+\begin{tabularx}{\textwidth}{Xp{200pt}XX}
+\multicolumn{1}{>{\columncolor{myblue}}c}{Cantidad} &
+\multicolumn{1}{>{\columncolor{myblue}}c}{Descripción} &
+\multicolumn{1}{>{\columncolor{myblue}}c}{Precio} &
+\multicolumn{1}{>{\columncolor{myblue}}c}{Total} \\
+
+$8$ & Reparación de caldera central & 50000.00 € & 400000.00 € \\
+$1$ & Desplazamiento & 25.00 € & 25.00 € \\ \\
+\multicolumn{2}{r}{Descuento} & $2$\% & $-$3.40 € \\
+\multicolumn{2}{r}{I.V.A.} & $16$\% & 40.00 € \\
+\multicolumn{2}{r}{\textbf{Total}} &  & \textbf{200.00} € \\
+\end{tabularx}
+\end{document}

@@ -1,0 +1,21 @@
+if @customer
+  page.replace_html 'customer-name', @customer.name
+  page.replace_html 'customer-address', :partial => 'shared/address', :locals => {
+    :street1      => @customer.address.street1,
+    :street2      => @customer.address.street2,
+    :postal_code  => @customer.address.postal_code,
+    :city         => @customer.address.city,
+    :province     => @customer.address.province,
+    :country_name => @customer.address.country.name
+  }
+  page.replace_html 'customer-cif', @customer.cif
+  page << "$('invoice-discount-percent').value = '#{format_integer_or_decimal(@customer.discount_percent)}';"
+  page << "$('invoice-discount-percent').onchange();"
+else
+  page.replace_html 'customer-name', ''
+  page.replace_html 'customer-cif', ''
+  page.replace_html 'customer-address', ''
+  page << "$('invoice-discount-percent').value = '';"
+  page << "$('invoice-discount-percent').onchange();"
+end
+page << "if ($('errors_for_invoice_customer')) { $('errors_for_invoice_customer').hide() }"

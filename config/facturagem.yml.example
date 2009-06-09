@@ -1,0 +1,133 @@
+#
+# -- [ eventual system-wide announcements ] -----------------------------------
+#
+
+# Just leave it blank if there's nothing to announce.
+announcement: |
+  Debido a tareas de mantenimiento <%= APP_NAME %> estará fuera de servicio el
+  próximo <b>jueves día 28 de agosto a partir las 23:00</b> (hora local de
+  Madrid), a lo sumo durante un par de horas.
+
+#
+# -- [ reserved subdomains ] --------------------------------------------------
+#
+
+reserved_subdomains:
+  - www
+  - test
+  - dev
+
+#
+# -- [ backoffice ] -----------------------------------------------------------
+#
+
+root_login: 'root'
+root_password: 'admin'
+
+#
+# -- [ pagination ] -----------------------------------------------------------
+#
+
+pagination_window: 20
+pagination_window_for_backoffice: 50
+
+#
+# -- [ chpass mail ] ----------------------------------------------------------
+#
+
+chpass_mail_from: <%= APP_NAME %> Soporte <<%=CONTACT_EMAIL_ACCOUNTS%>>
+chpass_mail_subject: Instrucciones para cambiar tu contraseña en <%= APP_NAME %>
+chpass_mail_body: |
+  Puedes configurar una nueva contraseña para acceder a tu cuenta en <%= APP_NAME %>
+  siguiendo este enlace temporal:
+  
+    <%= url_for_chpass %>
+  
+  Una vez lo hayas visitado quedará desactivado, si bien podrás generar otro
+  válido en cualquier momento clicando de nuevo en "He olvidado mi contraseña".
+  
+  Agradecemos tu confianza en <%= APP_NAME %>, te recordamos que puedes ponerte en
+  contacto con nosotros en <%= CONTACT_EMAIL_ACCOUNTS %>.
+  
+  <%= APP_NAME %> Soporte
+
+ensure_we_are_completely_dedented_from_here_on: 1
+
+
+#
+# -- [ welcome mail ] ---------------------------------------------------------
+#
+
+welcome_mail_from: <%= APP_NAME %> <<%=CONTACT_EMAIL_ACCOUNTS%>>
+welcome_mail_subject: Bienvenido a <%= APP_NAME %>
+welcome_mail_body: |
+    ¡Bienvenido a <%= APP_NAME %>!
+    
+    La direccion personalizada de acceso a tu cuenta es:
+    
+    <%= url_for_account %>
+    
+     Por favor, guarda este correo para usarlo como referencia por si olvidas esa
+     dirección.
+    
+     Agradecemos tu confianza en <%= APP_NAME %>,
+    
+     El equipo de <%= APP_NAME %>
+    
+ensure_we_are_completely_dedented_at_the_end: 1
+
+
+#
+# -- [ mail for agencies login URL ] ------------------------------------------
+#
+
+# There are no addresses because this is a template for a real mail launched in
+# the mail client of the user.
+agencies_login_url_mail_subject: Dirección de consulta de mis facturas en <%= APP_NAME %>
+agencies_login_url_mail_body: |
+  Puedes consultar y descargar mis facturas siguiendo este enlace:
+  
+    <%= login_url_for_agencies %>
+
+  Saludos,
+
+  P.D.: Prueba <%= APP_NAME %> gratis en http://www.<%= DOMAIN_NAME %>.
+
+ensure_we_are_completely_dedented_at_the_end: 1
+
+
+#
+# -- [ mail for customer login URL ] ------------------------------------------
+#
+
+# There are no addresses because this is a template for a real mail launched in
+# the mail client of the user.
+customer_login_url_mail_subject: Dirección de consulta de mis facturas en <%= APP_NAME %>
+customer_login_url_mail_body: |
+  Puedes consultar y descargar las facturas que te he emitido siguiendo este enlace:
+  
+    <%= login_url_for_customer(@customer) %> 
+  
+  Saludos,
+  
+  P.D.: Prueba <%= APP_NAME %> gratis en http://www.<%= DOMAIN_NAME %>.
+
+ensure_we_are_completely_dedented_at_the_end: 1
+
+#
+# -- [ mail for accounts remainder ] ------------------------------------------
+#
+
+accounts_reminder_mail_from: <%=APP_NAME%> <<%=CONTACT_EMAIL_ACCOUNTS%>>
+accounts_reminder_mail_subject: Tus cuentas en <%=APP_NAME%>
+accounts_reminder_mail_body: |
+  La dirección de acceso de tus cuentas en <%= APP_NAME %> es:
+  
+    <%= urls.join("\n  ") %>
+  
+  Agradecemos tu confianza en <%= APP_NAME %>, te recordamos que puedes ponerte en
+  contacto con nosotros en <%= CONTACT_EMAIL_ACCOUNTS %>.
+  
+  El equipo de <%= APP_NAME %>  
+
+ensure_we_are_completely_dedented_at_the_end: 1

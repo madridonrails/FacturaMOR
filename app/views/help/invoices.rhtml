@@ -1,0 +1,114 @@
+﻿<div class="Title24Orange" id="titlearea">
+  <%= link_to 'Ayuda', :action => 'index' %>
+  <span class="Text18Orange">&gt;</span>
+  Sobre las facturas
+  </div>
+
+<div id="highlightareaAyuda">
+  <div id="textareaAyuda">
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="numerar" >¿Cómo se numeran las facturas?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      Según la legislación vigente puedes numerar tus facturas como quieras, siempre y cuando
+      sean consecutivas. <%= APP_NAME %> te sugiere un número de factura formado por el año seguido
+      de un número de 4 cifras, pero puedes cambiarlo. Simplemente escribe el número de factura
+      que quieras y la aplicación tratará de aprender y seguir tu patrón en adelante.
+    </div>
+
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="cambiar_fecha">¿Puedo cambiar la fecha de las facturas?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      Sí. <%= APP_NAME %> te deja cambiar todos los datos de la factura que quieras, al fin y al
+      cabo son tus datos ;-). Si te equivocaste al entrar la fecha o cualquier otra cosa
+      puedes corregir la factura siguiendo el enlace &laquo;Modificar factura&raquo; que
+      encontrarás en el pie de su página. Pero para cambios posteriores a su emisión ten
+      presente que existen unas normas claras sobre numeración y fechas de facturas en la
+      AEAT.
+    </div>
+
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="imprimir">¿Cómo imprimo una factura?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      Para imprimir una factura simplemente selecciona cualquiera de los enlaces etiquetados como PDF.
+      Si no tienes un visor de ficheros en formato PDF puedes descargar el programa gratuito
+      <a href="http://www.adobe.com/es/products/acrobat/readstep2.html" alt="Adobe Reader">Adobe Reader</a>.
+    </div>
+
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="divisas" >¿Soporta <%= APP_NAME %> varias divisas?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      No, lo sentimos. Por el momento sólo es posible hacer facturas en euros. La razón por
+      la que no lo soportamos es porque hemos querido hacer una aplicación muy fácil de manejar,
+      y pensamos que la mayoría de las facturas en España se emiten en euros. El soporte multi-moneda
+      tiene un coste en complejidad del programa para todos los usuarios y por el momento nos ha
+      parecido que no incluirlo era la mejor opción en ese sentido. De todos modos, es algo
+      que quizá añadamos en el futuro en función de su demanda.
+    </div>
+
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="personalizar">¿Puedo personalizar el formato de mis facturas?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      Si, puedes personalizar las facturas con tu propio logo. En próximas versiones de <%= APP_NAME %> podrás
+      elegir entre distintos formato de impresión de facturas.
+    </div>
+
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="direcciones">¿Por qué no se modifican las direcciones en
+      las facturas ya emitidas si cambio los datos de un cliente?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      Una vez emitida una factura los datos de la misma son guardados separados de los datos de la
+      ficha de cliente, de tus propios datos fiscales y del logo. Esta forma de trabajar pensamos
+      que es la adecuada porque el histórico de facturas debe mostrar siempre las facturas tal como
+      fueron emitidas en su día. Por ejemplo, si un cliente cambia de dirección, las nuevas facturas
+      van con la nueva dirección, pero las ya emitidas conservan los datos que eran vigentes en su
+      día. Si ocurre que la dirección estaba mal en la ficha y es necesario modificar una factura
+      ya emitida para que muestre la correcta, simplemente modifica la factura y actualiza esos
+      datos.
+    </div>
+
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="descuento">¿Cómo hago un descuento en una factura?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      Las facturas tienen un campo descuento donde figura un porcentaje. Cada cliente puede tener un descuento
+      propio en su ficha y, de ser así, es aplicado automáticamente al ser seleccionado. En cualquier caso,
+      ese campo es siempre modificable. Si quisieras hacer un descuento por una cantidad fija tan sólo añade
+      una linea de factura con precio negativo y un concepto que indique que se trata de un descuento.
+    </div>
+
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="no_pagada">¿Cómo puedo marcar una factura como no pagada?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      La marca de factura pagada es como un interruptor, haciendo click de nuevo sobre la marca de pagada
+      la factura quedara marcada como no pagada, y además se recalcula el saldo pendiente de cobro en el acto.
+    </div>
+
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="facturas_periodicas">¿Se pueden emitir facturas periódicas automáticamente?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+	    <%= APP_NAME %> no permite por el momento la realización de facturas de forma automática, pero si
+	    la factura es siempre la misma ten en cuenta la opción de copiar una factura. Mantiene todos
+	    los datos menos el número (sugiere el que toca de acuerdo a tu secuencia), y la fecha (sugiere
+	    la fecha actual).
+    </div>
+
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="fiscal_identifier">¿Puedo usar un número de identificación fiscal para mis clientes distinto de NIF o CIF?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+	    Sí. El campo correspondiente al número de identificación fiscal tiene como etiqueta &quot;NIF/CIF&quot;
+	    por tratarse de los identificadores más comunes. Pero <%= APP_NAME %> no asume que el identificador es
+	    ninguno de esos dos, puedes poner un NIE, un número de pasaporte, etc.
+    </div>
+    
+    <%= date_una_vuelta_o_registrate %>
+  </div>
+</div>

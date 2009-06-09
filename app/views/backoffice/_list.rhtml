@@ -1,0 +1,26 @@
+<table width="100%">
+  <colgroup>
+    <col width="7%"  />
+    <col width="35%" />
+    <col width="20%" />    
+    <col width="15%"  />
+    <col width="10%"  />
+    <col width="13%" />
+  </colgroup>
+  <%= table_header_remote :labels => ['', 'Nombre', 'Antigüedad', 'Login', 'Facturas', 'Clientes'], :non_orderable => [0] %>
+  <%= render :partial => 'account', :collection => @accounts %>
+</table>
+
+<% if @account_pages.page_count > 1 %>
+<p class="pagination-browser">
+  <%=
+    pagination_browser(
+      :paginator => @account_pages,
+      :url => {
+        :order_by  => @current_order_by,
+        :direction => @current_direction
+      }
+    )
+  %>
+</p>
+<% end %>

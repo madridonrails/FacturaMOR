@@ -1,0 +1,20 @@
+<tr class="<%= cycle('table-row-even', 'table-row-odd') %>">
+  <td class="Text13Grey">
+    <%= link_to 'login', :host => "#{account.short_name}.#{account_domain}", :controller => 'account', :action => 'login', :login_token => account.login_token_for_agencies.token, :only_path => false %>
+  </td>
+  <td class="Text13Grey" onmouseover="TagToTip('short_name_<%= account.id %>')">
+    <%=h account.name %><span id="short_name_<%= account.id %>" style="display: none"><%=h account.short_name %></span>
+  </td>
+  <td class="Text13Grey">
+    <%= format_date account.created_at.to_date %>
+  </td>
+  <td class="Text13Grey">
+    <%= format_date(account.owner.last_seen_at.to_date) rescue '' %>
+  </td>
+  <td class="Text13Grey numeric">
+    <%=h account.invoices.count %>
+  </td>  
+  <td class="Text13Grey numeric">
+    <%=h account.customers.count %>
+  </td>  
+</tr>

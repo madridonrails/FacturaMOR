@@ -1,0 +1,94 @@
+﻿<div class="Title24Orange" id="titlearea">
+  Aquí tienes la lista de las preguntas más frecuentes
+</div>
+
+<div id="highlightareaAyuda">
+  <div id="textareaAyuda"> 
+    <ul>
+      <li class="Title18OrangeHelp">
+        <%= link_to "Acerca de #{APP_NAME}", :action => 'about' %> <br />
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to "¿Cómo nace #{APP_NAME}?", :action => 'about', :anchor => "como_nace" %>
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to '¿Qué es un ASP?', :action => 'about', :anchor => "asp" %>
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to '¿Puedo ver una demo?', :action => 'about', :anchor => 'demo'%>
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to "¿Puedo usar #{APP_NAME} sin estar en España?", :action => 'about', :anchor => "puedo_usar" %>
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to '¿Cuánto tiempo guardáis mis facturas?', :action => 'about', :anchor => "cuanto_tiempo" %>
+      </li>      
+    </ul>
+
+<br />
+
+    <ul>
+      <li class="Title18OrangeHelp">
+        <%= link_to 'Sobre las facturas', :action => 'invoices' %><br />
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to '¿Cómo se numeran las facturas?', :action => 'invoices', :anchor => "numerar" %>
+      </li>  
+      <li class="Text13greyHelp">
+        <%= link_to '¿Puedo cambiar la fecha de las facturas?', :action => 'invoices', :anchor => "cambiar_fecha" %>
+      </li>  
+      <li class="Text13greyHelp">
+        <%= link_to '¿Cómo imprimo una factura?', :action => 'invoices', :anchor => "imprimir" %>
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to "¿Soporta #{APP_NAME} varias divisas?", :action => 'invoices', :anchor => "divisas" %>
+      </li>      
+      <li class="Text13greyHelp">
+        <%= link_to '¿Puedo personalizar el formato de mis facturas?', :action => 'invoices', :anchor => "personalizar" %>
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to '¿Por qué no se modifican las direcciones en las facturas
+        ya emitidas si cambio los datos de un cliente?', :action => 'invoices'  , :anchor => "direcciones"%>
+      </li>  
+      <li class="Text13greyHelp">
+        <%= link_to '¿Cómo hago un descuento en una factura?', :action => 'invoices', :anchor => "descuento" %>
+      </li>   
+      <li class="Text13greyHelp">
+        <%= link_to '¿Cómo puedo marcar una factura como no pagada?', :action => 'invoices', :anchor => "no_pagada" %>
+      </li>      
+      <li class="Text13greyHelp">
+        <%= link_to '¿Se pueden emitir facturas periódicas automáticamente?', :action => 'invoices', :anchor => "facturas_periodicas" %>
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to '¿Puedo usar un número de identificación fiscal para mis clientes distinto de NIF o CIF?', :action => 'invoices', :anchor => "fiscal_identifier" %>
+      </li>
+    </ul>
+
+<br /> 
+
+    <ul>
+      <li class="Title18OrangeHelp">
+        <%= link_to 'Funcionalidad general', :action => 'general' %><br />
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to '¿Puedo exportar mis datos?', :action => 'general', :anchor => 'exportar' %>
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to '¿Qué puedo hacer si no recuerdo mi página de acceso?', :action => 'general', :anchor => 'pagina_de_acceso' %>
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to "¿Qué browsers se pueden usar con #{APP_NAME}?", :action => 'general', :anchor => 'browsers' %>
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to "¿Qué medios de pago soporta #{APP_NAME}?", :action => 'general', :anchor => 'medios_pago' %>
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to '¿Qué significa marcar una factura como pagada?', :action => 'general', :anchor => 'factura_pagada' %>
+      </li>
+      <li class="Text13greyHelp">
+        <%= link_to '¿Pueden mis clientes ver sus facturas sin contraseñas?', :action => 'general', :anchor => 'passwords' %>
+      </li>
+    </ul>
+  </div>
+  <br />
+</div>

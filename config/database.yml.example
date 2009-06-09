@@ -1,0 +1,23 @@
+development:
+  adapter: mysql
+  database: facturagem_development
+  username: facturagem
+  password: facturagem
+  host: localhost
+  encoding: utf8
+
+test:
+  adapter: mysql
+  database: facturagem_test
+  username: facturagem
+  password: facturagem
+  host: localhost
+  encoding: utf8
+
+production:
+  adapter: mysql
+  database: facturagem_production
+  username: facturagem
+  password: facturagem
+  host: localhost
+  encoding: utf8

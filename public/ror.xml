@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:ror="http://rorweb.com/0.1/" >
+<channel>
+  <title>ROR Sitemap for http://www.facturagem.madridonrails.com/</title>
+  <link>http://www.facturagem.madridonrails.com/</link>
+  <item>
+    <title>ROR Sitemap for http://www.facturagem.madridonrails.com/</title>
+    <link>http://www.facturagem.madridonrails.com/</link>
+    <ror:about>sitemap</ror:about>
+    <ror:type>SiteMap</ror:type>
+  </item>
+
+<item>
+     <link>http://www.facturagem.madridonrails.com/</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>0</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.facturagem.madridonrails.com/tour</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>0</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.facturagem.madridonrails.com/help</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>0</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.facturagem.madridonrails.com/public/contact</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>0</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.facturagem.madridonrails.com/tour/new_invoice</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.facturagem.madridonrails.com/tour/print</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.facturagem.madridonrails.com/tour/customer</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.facturagem.madridonrails.com/tour/for_customers</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.facturagem.madridonrails.com/tour/for_agencies</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.facturagem.madridonrails.com/help/about</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.facturagem.madridonrails.com/help/invoices</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.facturagem.madridonrails.com/help/general</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.facturagem.madridonrails.com/tour/</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>2</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>https://www.facturagem.madridonrails.com/signup</link>
+     <title>FACTURAmor: servicio on-line para facturación</title>
+     <ror:updatePeriod>daily</ror:updatePeriod>
+     <ror:sortOrder>0</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+</channel>
+</rss>
+  

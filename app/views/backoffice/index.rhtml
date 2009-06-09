@@ -1,0 +1,42 @@
+<%
+  def percent(c)
+    "#{(c*100.0/@naccounts).to_i}%"
+  end
+%>
+
+<table width="100%" border="0" cellspacing="10" cellpadding="0">
+  <colgroup>
+    <col width="30%">
+    <col width="70%">
+  </colgroup>
+  <tr>
+    <td class="backoffice_label">Número total de cuentas</td>
+    <td><%= @naccounts %></td>
+  </tr>
+  <tr>
+    <td class="backoffice_label">Altas en el último mes</td>
+    <td><%= @nlast_registered_accounts %></td>
+  </tr>
+  <tr>
+    <td class="backoffice_label">10 altas más recientes</td>
+    <td>
+      <%= @most_recent_accounts.map(&:name).join(", ") %>
+    </td>
+  </tr>
+  <tr>
+    <td class="backoffice_label">Hicieron login en el último mes</td>
+    <td><%= percent @nlast_seen_accounts %></td>
+  </tr>
+  <tr>
+    <td class="backoffice_label">Tienen 10 o más facturas</td>
+    <td><%= percent @naccounts_with_some_invoices %></td>
+  </tr>
+  <tr>
+    <td class="backoffice_label">Número total de facturas</td>
+    <td><%= @ninvoices %> (<%= (@ninvoices_with_pdf*100.0/@ninvoices).to_i %>% de ellas con PDF generado)</td>
+  </tr>
+  <tr>
+    <td class="backoffice_label">Número total de clientes</td>
+    <td><%= @ncustomers %></td>
+  </tr>
+</table>

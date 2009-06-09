@@ -1,0 +1,36 @@
+<%= render :partial => 'menu' %>
+
+<div id="highlightareaTour1">
+  <div id="highlightareaTour2">
+    <%= video_object_tag 'presentacion.flv', 744, 510 %>
+  </div>
+  
+  <div id="textareaTour">
+    <span class="Title18DarkGrey">Los elementos más importantes de <%= APP_NAME %></span>
+    <br />
+    
+    <div class="Text13Grey">
+     Los elementos más relevantes de <%= APP_NAME %> son cuatro:
+      <ul>
+        <li>
+          <strong>Tus facturas:</strong>
+          Que puedes emitir, cambiar, copiar, borrar, descargar en PDF, exportar, etc.
+        </li>
+        <li><strong>Tus clientes:</strong>
+          Con sus datos de facturación, histórico de facturación, lo pendiente de pago, etc.
+        </li>
+        <li><strong>El saldo de facturas no cobradas:</strong>
+          Con extrema facilidad marca una factura como pagada, al hacerlo el saldo de facturas
+          pendientes de cobro se actualiza automáticamente.
+        </li>
+        <li><strong>Comparte tus facturas:</strong>
+          Si quieres, mediante enlaces seguros podrás dar acceso <strong>de lectura</strong> a tus
+          clientes o gestoría. Podrán ver, descargar y exportar facturas, pero no modificarlas.
+          El acceso para un cliente está restringido a las facturas de ese cliente.
+        </li>
+      </ul>
+    </div>
+    
+    <%= registrate_gratis %>
+  </div>
+</div>

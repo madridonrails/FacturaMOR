@@ -1,0 +1,43 @@
+<% account = flat_rate_account %>
+<% dimmed = account.fiscal_data.nil? %>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" <%= 'style="opacity: 0.6"' if dimmed %>>
+  <%= colgroup_for_data_tables %>
+  <tr>
+    <td class="Text13OrangeRight"><strong>ID</strong></td>
+    <td class="Text13Grey"><%=h account.id %></td>
+  </tr>
+  <tr>
+    <td class="Text13OrangeRight"><strong>Nombre</strong></td>
+    <td class="Text13Grey"><%=h account.name %> (<%=h account.short_name %>)</td>
+  </tr>
+  <tr>
+    <td class="Text13OrangeRight"><strong>Email</strong></td>
+    <td class="Text13Grey"><%=h account.owner.email %> </td>
+  </tr>
+  <tr>
+    <td class="Text13OrangeRight"><strong>Antigüedad</strong></td>
+    <td class="Text13Grey"><%=h account.created_at.to_date %></td>
+  </tr>
+  <% if account.fiscal_data %>
+      <% ninvoices = account.invoices.size %>
+      <tr>
+        <td></td>
+        <td>
+          <b>Esta cuenta
+          <% if ninvoices == 0 %>
+          no ha emitido ninguna factura.
+          <% elsif ninvoices == 1 %>
+          ha emitido una sola factura.
+          <% else %>
+          sólo ha emitido <%= account.invoices.size %> facturas.
+          <% end %>
+        </b></td>
+      </tr>    
+  <% else %>
+    <tr>
+      <td></td>
+      <td><b>Esta cuenta no entró todavía sus datos fiscales.</b></td>
+    </tr>
+  <% end %>
+</table>

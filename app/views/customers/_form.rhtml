@@ -1,0 +1,44 @@
+<table width="100%"  border="0" cellspacing="10" cellpadding="0">
+  <%= colgroup_for_data_tables %>
+  <tr>
+    <td class="Text13OrangeRight" valign="top"><label for="customer_name"><strong>Nombre</strong></label></td>
+    <td>
+      <%= text_field :customer, :name, :class => 'TableUnderline', :size => 30 %>
+      <%= errors_for_attr :customer, :name %>
+    </td>
+  </tr>
+  <tr>
+    <td class="Text13OrangeRight" valign="top"><label for="customer_cif"><strong>NIF/CIF</strong></label></td>
+    <td>
+      <%= text_field :customer, :cif, :class => 'TableUnderline', :size => 30 %>
+      <%= errors_for_attr :customer, :cif %>
+    </td>
+  </tr>
+  <% @address = @customer.address || Address.new %>
+  <%= render :partial => 'shared/address_form' %>
+  <tr>
+    <td class="Text13OrangeRight" valign="top"><label for="customer_discount_percent"><strong>Descuento</strong></label></td>
+    <td>
+      <%= text_field :customer, :discount_percent,  :maxlength => '5', :value => format_integer_or_decimal(@customer.discount_percent), :size => 3, :class => 'TableUnderline numeric' %> <span class="Text13Grey">%</span>
+      <%= errors_for_attr :customer, :discount_percent %>
+    </td>
+  </tr>
+  <tr>
+    <td class="Text13OrangeRight" valign="top"><label for="customer_notes">Notas</label></td>
+    <td valign="top">
+      <%= text_area :customer, :notes, :class => 'TableOutline', :rows => 4, :cols => 50 %>
+      <%= errors_for_attr :customer, :notes %>
+    </td>
+  </tr>
+  <% if @current_action == 'edit' %>
+  <tr>
+    <td class="Text13OrangeRight" valign="top"><strong>Dirección de consulta</strong></td>
+    <td>
+      <select name="change_login_url_for_customer">
+        <option value="0" <%= 'selected="selected"' if params[:change_login_url_for_customer] == '0' %>>Dejar la actual como está</option>
+        <option value="1" <%= 'selected="selected"' if params[:change_login_url_for_customer] == '1' %>>Invalidar la actual y generar una nueva</option>
+      </select>
+    </td>
+  </tr>
+  <% end %>
+</table>

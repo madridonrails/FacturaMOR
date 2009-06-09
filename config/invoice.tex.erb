@@ -1,0 +1,148 @@
+\documentclass[a4paper, 10pt]{article}
+
+% use less wide margins
+\usepackage{fullpage}
+
+% expect input encoding to be UTF8
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+% provides the euro symbol among others
+\usepackage{textcomp}
+
+% provides some help in getting the widths in the table as we want
+\usepackage{tabularx}
+\renewcommand{\tabularxcolumn}[1]{r}
+
+% use sans-serif as default font
+\renewcommand{\familydefault}{\sfdefault}
+
+% standard package to work with multiple columns, used for the header
+\usepackage{multicol}
+
+% standard package to use colors
+\usepackage[pdftex]{xcolor}
+\usepackage{colortbl}
+
+% for logo display
+\usepackage{graphicx}
+
+% do not indent paragraphs
+\setlength{\parindent}{0em}
+
+% put this much space between paragraphs
+\setlength{\parskip}{.7em}
+
+% color for table text, table header, and odd rows in invoice body
+\definecolor{mygray}{HTML}{555555}
+\definecolor{rowhead}{HTML}{E6E3D7}
+\definecolor{rowodd}{HTML}{F3F1E9}
+\definecolor{mylightgrey}{HTML}{8B929E}
+
+<%
+  def escape_latex(n)
+    FacturagemUtils.escape_latex(n)
+  end
+%>
+
+% give some air to the header
+\renewcommand{\fboxsep}{0.5cm}
+
+% give some air to cells adding some padding
+%\renewcommand{\tabcolsep}{3.5mm}
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+% do not output the page number
+\thispagestyle{empty}
+
+% set mygray as current default color for text
+\color{mygray}
+%\framebox{
+\begin{minipage}{\textwidth}
+\begin{multicols}{2}
+\textbf{Factura} \\
+<%= escape_latex(@invoice.number) %> \\ \\
+\textbf{Fecha} \\
+<%= escape_latex(format_date_long(@invoice.date)) %> \\ \\
+\textbf{Cliente} \\
+<%= escape_latex(@invoice.customer_name) %> \\
+<%= escape_latex(@invoice.customer_street1) %> \\
+<% unless @invoice.customer_street2.blank? %>
+<%= escape_latex(@invoice.customer_street2) %> \\
+<% end %>
+<%= escape_latex(@invoice.customer_postal_code) %> <%= escape_latex(@invoice.customer_city) %> \\
+<%= escape_latex(@invoice.customer_province) %> (<%= escape_latex(@invoice.customer_country_name) %>) \\
+<%= escape_latex(@invoice.customer_cif) %>
+  
+\columnbreak
+
+\begin{center}
+
+<% if @logo_path %>
+\includegraphics{<%= @logo_path %>} \\
+<% end %>
+<% unless @invoice.account_name.blank? %>
+\textbf{<%= escape_latex(@invoice.account_name) %>} \\
+<% end %>
+<% unless @invoice.account_street1.blank? %>
+<%= escape_latex(@invoice.account_street1) %> \\
+<% end %>
+<% unless @invoice.account_street2.blank? %>
+<%= escape_latex(@invoice.account_street2) %> \\
+<% end %>
+<% unless @invoice.account_postal_code.blank? && @invoice.account_city.blank? %>
+<%= escape_latex(@invoice.account_postal_code) %> <%= escape_latex(@invoice.account_city) %> \\
+<% end %>
+<%= escape_latex(@invoice.account_province) %> (<%= escape_latex(@invoice.account_country_name) %>) \\
+<% unless @invoice.account_cif.blank? %>
+<%= escape_latex(@invoice.account_cif) %> \\
+<% end %>
+
+\end{center}
+
+\end{multicols}
+\end{minipage}
+%}
+
+\vspace{1cm}
+
+\begin{tabularx}{\textwidth}{Xp{220pt}XX}
+\multicolumn{1}{>{\columncolor{rowhead}}c}{Cantidad} &
+\multicolumn{1}{>{\columncolor{rowhead}}c}{Descripción} &
+\multicolumn{1}{>{\columncolor{rowhead}}c}{Precio} &
+\multicolumn{1}{>{\columncolor{rowhead}}c}{Total} \\
+
+<% n = 0 %>
+<% for line in @invoice.lines %>
+  <%= n % 2 == 1 ? '\rowcolor{rowodd}' : '' %>
+  <% n += 1 %>
+  <%= @amounts_formatter.call(line.amount) %> &
+  <%= escape_latex(line.description) %> &
+  <%= @prices_formatter.call(line.price) %> &
+  <%= @totals_formatter.call(line.total) %> \\
+<% end %>
+\\
+<% if percent_printable?(@invoice.discount_percent) %>
+\multicolumn{2}{r}{Descuento} & <%= format_integer_or_decimal(@invoice.discount_percent, :target => :latex) %> \% &
+<%= @totals_formatter.call(-@invoice.discount) %> \\
+<% end %>
+\multicolumn{2}{r}{Base Imponible} &  & <%= @totals_formatter.call(@invoice.tax_base) %> \\
+<% if @current_account.charges_irpf? && percent_printable?(@invoice.irpf_percent) %>
+\multicolumn{2}{r}{IRPF} & <%= format_integer_or_decimal(@invoice.irpf_percent, :target => :latex) %> \% &
+<%= @totals_formatter.call(-@invoice.irpf) %> \\
+<% end %>
+<% if percent_printable?(@invoice.iva_percent) %>
+\multicolumn{2}{r}{IVA} & <%= format_integer_or_decimal(@invoice.iva_percent, :target => :latex) %> \% &
+<%= @totals_formatter.call(@invoice.iva) %> \\
+<% end %>
+\multicolumn{2}{r}{\textbf{Total}} &  & \textbf{<%= @totals_formatter.call(@invoice.total) %>} \\
+\end{tabularx}
+
+\vfill
+
+\color{mylightgrey}
+
+<%= FacturagemUtils.simple_format_to_latex(@invoice.footer) %>
+
+\end{document}

@@ -1,0 +1,20 @@
+<div id="redbox-for-new-customer" style="display: none; width: 700px;">
+  <div style="margin: 10px">
+    <div style="padding: 10px">
+    <% form_remote_tag :url => {:controller => 'customers', :action => 'create_for_invoice'} do %>
+      <% @customer = Customer.new %>
+      <%= render :partial => 'customers/form' %>
+      <table width="100%"  border="0" cellspacing="10" cellpadding="0">
+        <tr>
+          <td width="50%" class="CellTablebuttonL">
+            <%= button_to_function 'Cancelar', "clean_errors_in_customer_redbox(); RedBox.close()", :class => 'button' %>
+          </td>
+          <td width="50%" class="CellTablebuttonR" align="right">
+            <%= submit_tag 'Crear cliente', :class => 'button' %>
+          </td>
+      	</tr>
+      </table>
+    <% end %>
+    </div>
+  </div>
+</div>

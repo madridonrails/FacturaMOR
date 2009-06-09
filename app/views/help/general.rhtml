@@ -1,0 +1,83 @@
+﻿<div class="Title24Orange" id="titlearea">
+  <%= link_to 'Ayuda', :action => 'index' %>
+  <span class="Text18Orange">&gt;</span>
+  Funcionalidad general
+</div>
+<div id="highlightareaAyuda">
+  <div id="textareaAyuda">
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="exportar">¿Puedo exportar mis datos?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      Sí. Los datos de <%= APP_NAME %> son tuyos, y siempre tienes acceso a los mismos. Puedes
+      exportar tus datos en formato CSV que es leido por todos los programas de hoja de
+      cálculo.
+      <br /><br />
+      <div style="text-align: center;">
+         <%= image_tag "exportar_facturas_small.png" %><br />
+         <em>En esta imagen puedes ver dónde está la opción de exportar facturas</em>
+      </div>
+    </div>
+
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="pagina_de_acceso">¿Qué puedo hacer si no recuerdo mi página de acceso?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      Además de acceder a tu cuenta a través de tu página personalizada, hay una
+      página de login en la home de <%= APP_NAME %>.
+      Verás que en esa página hay también un formulario en el que poniendo tu dirección
+      de correo electrónico te recordaremos la direccion personalizada de tu cuenta.<br /><br />
+      De todos modos, si tienes algún problema con el acceso siempre nos puedes enviar un mail a nuestra
+      dirección de soporte
+      <strong><%= mail_to CONTACT_EMAIL_ACCOUNTS, nil, :encode => 'javascript' %></strong>, trataremos
+      de asistirte con la mayor rapidez.
+    </div>
+
+    <div class="Text13Grey HelpItem" >
+      <span class="Title18OrangeHelp" id="browsers">¿Qué browsers se pueden usar con <%= APP_NAME %>?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      <%= APP_NAME %> recomienda el uso de
+      <a href="http://www.mozilla-europe.org/es/products/firefox/" alt="Firefox">Firefox</a>,
+      pero también está probada con Internet Explorer 6 y 7, y con Safari 2 y 3 para Mac.
+      Nuestras pruebas con Opera, Konqueror y Epiphany han sido satisfactorias, pero no son
+      navegadores soportados por el momento.
+    </div>
+
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="medios_pago">¿Qué medios de pago soporta <%= APP_NAME %>?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      <%= APP_NAME %> no incorpora soporte para medios de pago, no facilita por el momento el cobro de
+      tus facturas.
+    </div>
+
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="factura_pagada">¿Qué significa marcar una factura como pagada?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      Al marcar una factura como pagada su importe bruto no aparece sumado
+      en el total de pendiente de cobro:<br />
+      <br />
+      <div style="text-align: center;">
+	      <%= image_tag "cobros_pendientes.png" %><br />
+	      <em>El total de cobros pendientes muestra la suma de los importes de las facturas que no están marcadas como cobradas</em>
+	    </div>
+      <br />
+    </div>
+
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="passwords">¿Pueden mis clientes ver sus facturas sin contraseñas?</span>
+      <%= ir_al_principio %>
+	    <%= help_answer_separator %>
+      Cada cliente dispone de una URL segura de acceso. Esta URL la puedes encontrar en
+      la ficha de cliente como se ve en la imagen (pendiente).
+      <br /><br />
+      El cliente que accede mediante esta URL puede ver únicamente sus facturas, y
+      por supuesto descargarlas en PDF o exportarlas, pero no podrá modificar ninguno
+      de sus datos.
+    </div>
+    
+    <%= date_una_vuelta_o_registrate %>
+  </div>
+</div>

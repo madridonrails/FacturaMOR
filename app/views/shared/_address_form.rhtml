@@ -1,0 +1,25 @@
+<%# to be included in other forms, assumes there's an @address in scope %>
+<tr>
+  <td class="Text13OrangeRight"><label for="address_street1"><strong>Dirección</strong></label></td>
+  <td><%= text_field :address, :street1, :class => 'TableUnderline', :size => 30 %></td>
+</tr>
+<tr>
+  <td class="Text13OrangeRight"><label for="address_street2"><strong>Dirección (cont.)</strong></label></td>
+  <td><%= text_field :address, :street2, :class => 'TableUnderline', :size => 30 %></td>
+</tr>
+<tr>
+  <td class="Text13OrangeRight"><label for="address_postal_code"><strong>Código postal</strong></label></td>
+  <td><%= text_field :address, :postal_code, :class => 'TableUnderline', :size => 30 %></td>
+</tr>
+<tr>
+  <td class="Text13OrangeRight"><label for="address_city"><strong>Localidad</strong></label></td>
+  <td><%= text_field :address, :city, :class => 'TableUnderline', :size => 30 %></td>
+</tr>
+<tr>
+  <td class="Text13OrangeRight"><label for="address_province"><strong>Provincia</strong></label></td>
+  <td><%= text_field :address, :province, :class => 'TableUnderline', :size => 30 %></td>
+</tr>
+<tr>
+  <td class="Text13OrangeRight"><label for="address_country_id"><strong>País</strong></label></td>
+  <td><%= country_selector :address, :country_id, {}, :class => 'outline in-redbox' %></td>
+</tr>

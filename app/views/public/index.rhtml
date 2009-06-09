@@ -1,0 +1,78 @@
+<div id="highlightarea">
+    <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="center" width="53%">
+          <p class="Title48DarkGrey">¡Factura Fácil!</p>
+          <p class="Text24Grey">
+            La manera más fácil y eficaz<br />
+            de hacer tus facturas.<br />
+            En menos de 3 minutos.
+          </p>
+          <p class="TextHighlightOrange">
+            <%= link_to 'Date una vuelta', :controller => 'tour' %>
+            o
+            <%= link_to 'Regístrate gratis', :action => 'signup' %>
+          </p>
+          <p class="TextHighlightOrange" style="font-size: 16px">
+            ¿Cómo hacer una factura? Mira esta
+            <%= link_to 'plantilla', :controller => 'help', :action => 'howto' %>
+          </p>          
+        </td>
+        <td width="47%">
+          <% img = image_tag "foto_principal.gif" %>
+          <%= link_to img, :action => 'tour' %>
+        </td>
+      </tr>
+    </table>
+</div>
+
+<div id="cleararea">
+  <table width="745" border="0" cellspacing="10" cellpadding="0">
+    <tr>
+      <td valign="top" align="left">
+        <%= image_tag "icon-arrow.gif" %>
+        <span class="Title18DarkGrey">Crear facturas</span>
+        <br />
+        <%= image_tag "detail01.jpg", :class => 'imgBorder01' %>
+        <span class="Title14Orange">Más fácil que una hoja de cálculo</span>
+        <br />
+        <span class="Text13Grey">
+          El programa de facturación más usado es la hoja de cálculo.
+          Sin complicadas instalaciones, con toda libertad, y a tu manera. Pero ¿cuántas
+          veces se te ha duplicado un número de factura, o tu gestor te las ha pedido y
+          no sabías en qué carpeta estaban?<br />
+          <%= APP_NAME %> se ha construido pensando en hacerte la vida fácil, y con total
+          seguridad.
+        </span>
+		  </td>
+      <td valign="top" align="left">
+        <%= image_tag "icon-arrow.gif" %>
+        <span class="Title18DarkGrey">Imprimir facturas</span>
+        <br />
+        <%= image_tag "detail02.jpg", :class => 'imgBorder01' %>
+		    <span class="Title14Orange">Donde quieras, y como quieras</span>
+		    <br />
+        <span class="Text13Grey">
+          <%= APP_NAME %> es una aplicación en la que no necesitas más que una conexión a Internet.
+          Protegido con tu password podrás crear, modificar, imprimir, o compartir tus facturas.
+          Tus facturas están seguras en nuestros data centers, protegidas con backups y las más
+          sofisticadas medidas de seguridad.
+        </span>
+		  </td>
+      <td valign="top" align="left">
+        <%= image_tag "icon-arrow.gif" %>
+        <span class="Title18DarkGrey">Compartir facturas</span>
+        <br />
+        <%= image_tag "detail03.jpg", :class => 'imgBorder01' %>
+		    <span class="Title14Orange">Aprovecha la red</span>
+		    <br />
+        <span class="Text13Grey">
+          Además, al ser una aplicación en la red, puedes compartir tus facturas con
+          tus clientes o tu gestor con total comodidad y seguridad. <%= APP_NAME %> te permite
+          ofrecerles una página web personalizada a la que sólo ellos pueden acceder.
+          Eso sí, no podrán modificar nada, sólo tú tienes esa capacidad.
+        </span>
+		  </td>
+    </tr>
+  </table>
+</div>

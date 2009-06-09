@@ -1,0 +1,2 @@
+module MoHelper
+end

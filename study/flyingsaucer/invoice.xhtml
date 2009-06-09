@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <title>Factura de prueba</title>
+    <link rel="stylesheet" type="text/css" href="invoice.css" media="print" />
+  </head>
+  <body>
+    <div id="invoice-header">
+      Header
+    </div>
+    <div id="invoice-body">
+      <table cellspacing="0px">
+        <thead>
+          <tr>
+            <th class="invoice-line-amount">Cantidad</th>
+            <th class="invoice-line-description">Concepto</th>
+            <th class="invoice-line-price">Precio</th>
+            <th class="invoice-line-total">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="invoice-line-even">
+            <td class="invoice-line-amount">10</td>
+            <td class="invoice-line-description">Mantenimiento de turbinas de calefacción</td>
+            <td class="invoice-line-price">50,34 <span class="currency">€</span></td>
+            <td class="invoice-line-total">503,40 <span class="currency">€</span></td>
+          </tr>
+          <tr class="invoice-line-odd">
+            <td class="invoice-line-amount">1</td>
+            <td class="invoice-line-description">Materiales</td>
+            <td class="invoice-line-price">234,89 <span class="currency">€</span></td>
+            <td class="invoice-line-total">234,89 <span class="currency">€</span></td>
+          </tr>
+          <tr class="invoice-line-even">
+            <td class="invoice-line-amount">1</td>
+            <td class="invoice-line-description">Desplazamiento</td>
+            <td class="invoice-line-price">140,00 <span class="currency">€</span></td>
+            <td class="invoice-line-total">140,00 <span class="currency">€</span></td>
+          </tr>
+          <tr>
+            <td style="padding-bottom: 200mm">&nbsp;</td>
+            <td style="padding-bottom: 200mm">&nbsp;</td>
+            <td style="padding-bottom: 200mm">&nbsp;</td>
+            <td style="padding-bottom: 200mm">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>bottom</p>
+    </div>
+    <div id="invoice-footer">
+      Footer
+    </div>
+  </body>
+</html>
+  

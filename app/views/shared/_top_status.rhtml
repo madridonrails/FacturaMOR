@@ -1,0 +1,5 @@
+<div id="topStatus">
+  <span class="Title18Grey">Cobros Pendientes</span>
+  <br /><br />
+  <span class="Title24Orange"><%= format_money_as_decimal(@current_account.not_yet_paid_amount, :force_zero => true) %></span>
+</div>

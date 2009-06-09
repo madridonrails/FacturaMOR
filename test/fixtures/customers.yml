@@ -1,0 +1,38 @@
+# == Schema Information
+# Schema version: 7
+#
+# Table name: customers
+#
+#  id               :integer(11)   not null, primary key
+#  url_id           :string(255)   not null
+#  account_id       :integer(11)   not null
+#  name             :string(255)   
+#  name_for_sorting :string(255)   
+#  cif              :string(255)   not null
+#  discount_percent :decimal(10, 2 
+#  notes            :text          
+#  created_at       :datetime      
+#  updated_at       :datetime      
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+cliente:
+  id: 1
+  url_id: juan
+  account_id: 1
+  name: Juan
+  name_for_sorting: juan
+  cif: A58818501
+  discount_percent: 2.00
+  notes: tests
+
+cliente_especial:
+  id: 2
+  url_id: pedro
+  account_id: 1
+  name: Pedro
+  name_for_sorting: pedro
+  cif: A58818501
+  discount_percent: 2.00
+  notes: tests
+

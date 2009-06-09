@@ -1,0 +1,39 @@
+<%# This is an excepcional form which has nothing to do with AR, a plain-old form is enough %>
+<div id="FacturaDatos">
+  <div class="Text13Grey" style="padding: 30px;">
+    <div class="Title18Grey">Exportación de facturas</div>
+    <%= form_tag %>
+      <p>
+        <label for="period"><span class="Title13Grey">Periodo</span></label><br />
+        <select name="period">
+          <option value="" selected="selected">Todo el histórico</option>
+          <option value="current_quarter">Trimestre presente</option>
+          <option value="last_quarter">Trimestre pasado</option>
+          <option value="current_year">Año presente</option>
+          <option value="last_year">Año pasado</option>
+        </select>
+      </p>
+      <p>
+        <label for="detail_level"><span class="Title13Grey">Nivel de detalle</span></label><br />
+        <select name="detail_level">
+          <option value="" selected="selected">Cabecera y totales</option>
+          <option value="1">Incluir desglose por lineas</option>
+        </select>
+      </p>
+      <% if can_read_all? %>
+      <p>
+        <label for="customer_id"><span class="Title13Grey">Cliente</span></label><br />
+        <select name="customer_id">
+          <option value="" selected="selected">Todos los clientes</option>
+          <% for c in @current_account.customers.sort_by {|c| c.name_for_sorting} %>
+            <option value="<%= c.id %>"><%=h c.name %></option>
+          <% end %>
+        </select>
+      </p>
+      <% end %>
+      <p>
+        <%= submit_tag 'Exportar facturas', :class => 'button' %>
+      </p>
+    <%= end_form_tag %>
+  </div>
+</div>

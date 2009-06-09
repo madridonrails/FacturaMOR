@@ -1,0 +1,6 @@
+<div id="FacturaDatos">
+  <%= form_tag :action => 'edit', :id => @customer %>
+  <%= render :partial => 'form' %>
+  <%= render :partial => 'shared/cancel_submit', :locals => {:cancel_url => url_for(:action => 'show', :id => @customer), :submit_label => 'Modificar cliente'} %>
+  <%= end_form_tag %>
+</div>

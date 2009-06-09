@@ -1,0 +1,20 @@
+<% if flash[:reminder_sent] %>
+<p class="error">
+  Si la dirección "<%=h flash[:reminder_email] %>" figura en nuestra
+  base de datos recibirás un mensaje con tus cuentas. Si no llegara, por
+  favor comprueba la carpeta de correo no deseado (spam) o contáctanos en
+  <%= mail_to CONTACT_EMAIL_ACCOUNTS, CONTACT_EMAIL_ACCOUNTS, :encode => 'javascript' %>.
+</p>
+<% end %>
+
+<% form_tag(:action => 'accounts_reminder') do %>
+<p class="Text13Grey">
+  <span class="Title14Orange">Email</span><br />
+  <input type="text" name="email" class="formField" value="<%=h flash[:reminder_email] %>"/>
+</p>
+<p class="Text13Grey">
+  <span class="CellTablebuttonL">
+    <input type="submit" class="button" value="Solicitar datos" />
+  </span>
+</p>
+<% end %>

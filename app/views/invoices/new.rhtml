@@ -1,0 +1,21 @@
+<% form_for :invoice, :url => {:action => 'create'}, :html => {:id => 'invoice-form'} do |form| %>
+<% if params[:from] %>
+<%= hidden_field_tag :from, params[:from] %>
+<%= hidden_field_tag :id, params[:id] %>
+<% end %>
+<%= hidden_field_tag :guessed_number, @invoice.number %>
+<div id="FacturaDatos">
+  <div id="FacturaDatosDer">
+    <%= render :partial => 'right_header', :locals => {:editable => false} %>
+  </div>
+  <div id="FacturaDatosIzq">
+    <%= render :partial => 'left_header', :locals => {:editable => true, :form => form} %>
+  </div>
+  <div style="clear: both;"></div>
+</div>
+<div id="FacturaCuerpo">
+  <%= render :partial => 'body_editor', :locals => {:form => form} %>
+  <%= render :partial => 'shared/cancel_submit', :locals => {:cancel_url => url_for(:action => 'list'), :submit_label => 'Emitir factura'} %>
+</div>
+<% end %>
+<%= render :partial => 'redbox_for_new_customer' %>

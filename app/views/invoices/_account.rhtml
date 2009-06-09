@@ -1,0 +1,17 @@
+<strong><%=h @invoice.account_name %></strong>
+<br />
+<%= render(
+      :partial => 'shared/address',
+      :locals => {
+        :street1      => @invoice.account_street1,
+        :street2      => @invoice.account_street2,
+        :postal_code  => @invoice.account_postal_code,
+        :city         => @invoice.account_city,
+        :province     => @invoice.account_province,
+        :country_name => @invoice.account_country_name
+      }
+    )
+%>
+<br />
+<%=h @invoice.account_cif %>
+<br />

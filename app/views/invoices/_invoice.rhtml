@@ -1,0 +1,15 @@
+<tr class="<%= cycle('table-row-even', 'table-row-odd') %>">
+  <td class="Text13Grey"><%= link_to_invoice(invoice) %></td>
+  <td class="Text13Grey"><%= format_date_short(invoice.date) %></td>
+  <td class="Text13Grey"><%= link_to_customer(invoice.customer) %></td>
+  <td class="Text13Grey numeric" nowrap="nowrap"><%= format_money_as_decimal(invoice.total) %></td>
+  <td align="center">
+    <span id="invoice_paid_status_<%= invoice.url_id %>"><%= invoice_paid_toggler(invoice) %></span>
+  </td>
+  <td class="Text11Orange">
+    <%= link_to 'PDF', :action => 'pdf', :id => invoice %>
+    <% if can_write? %>
+    | <%= link_to_new_invoice_copying('Copiar', invoice) %>
+    <% end %>
+  </td>
+</tr>  

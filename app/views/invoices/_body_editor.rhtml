@@ -1,0 +1,80 @@
+<table width="100%" border="0">
+  <colgroup>
+    <col width="7%"  />
+    <col width="52%" />
+    <col width="11%"  />
+    <col width="14%"  />
+    <col width="17%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <td class="CellTableHeader">Cantidad</td>
+      <td class="CellTableHeader">Concepto</td>
+      <td class="CellTableHeader">Precio</td>
+      <td class="CellTableHeader">Total</td>
+      <td class="CellTableLine">&nbsp;</td>
+    </tr>
+  </thead>
+  <tbody id="invoice-lines">
+    <%= render :partial => 'line', :collection => @invoice.lines, :locals => { :for_edition => true } %>
+  </tbody>
+  <tbody>
+    <tr>
+      <%# we use here IDs with underscores because the autocompleter helper uses them as JavaScript variables %>
+      <td class="CellTableLine"><input type="text" onkeypress="return add_new_line_to_invoice_on_return(event)" id="invoice_new_line_amount" name="new_line_amount" class="TableUnderline numeric incell" value="1" maxlength="7" /></td>
+      <td class="CellTableLine"><%= invoice_new_line_description_auto_completer :id => "invoice_new_line_description", :name => 'new_line_description', :class => 'TableUnderline text incell', :maxlength => 1000 %></td>
+      <td class="CellTableLine"><input type="text" onkeypress="return add_new_line_to_invoice_on_return(event)" id="invoice_new_line_price" name="new_line_price" class="TableUnderline numeric incell" maxlength="11" /></td>
+      <td class="CellTableLine">&nbsp;</td>
+      <td class="Title12Orange CellTableLine"><%= link_to_remote(image_tag('icon-add.gif', :style => 'vertical-align: middle') + '&nbsp;Añadir', {:url => {:action => 'add_new_line'}, :submit => 'invoice-form'}) %></td>
+    </tr>
+    <tr style="display: none" id="new_line_warning">
+      <td colspan="4" align="center" class="Text13Grey" style="background-color: #E6E3D7">
+        Por favor, introduce al menos cantidad y concepto.
+      </td>
+    </tr>
+    <tr>
+      <td class="CellTableLine">&nbsp;</td>
+      <td class="Text13GreyRight">Descuento</td>
+      <td class="CellTableLine numeric"><%= form.text_field :discount_percent, :size => 2, :maxlength => '5', :id => 'invoice-discount-percent', :value => format_integer_or_decimal(@invoice.discount_percent), :class => 'TableUnderlineR', :onchange => recompute, :onkeypress => "return ignore_newline(event)" %>&nbsp;<span class="Text13Grey">%</span></td>
+      <td class="CellTableLine numeric"><span id="invoice-discount" class="TableResult"><%= @totals_formatter.call(-@invoice.discount) %></span></td>
+      <td class="CellTableLine">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="CellTableLine">&nbsp;</td>
+      <td class="Text13GreyRight numeric">Base Imponible</td>
+      <td class="CellTableLine">&nbsp;</td>
+      <td class="CellTableLine numeric"><span id="invoice-tax_base" class="TableResult"><%= @totals_formatter.call(@invoice.tax_base) %></span></td>
+      <td class="CellTableLine">&nbsp;</td>
+    </tr>
+    <% if @current_account.charges_irpf? %>
+    <tr>
+      <td class="CellTableLine">&nbsp;</td>
+      <td class="Text13GreyRight">IRPF</td>
+      <td class="CellTableLine numeric"><%= form.text_field :irpf_percent, :size => 2,  :maxlength => '5', :id => 'invoice-irpf-percent', :value => format_integer_or_decimal(@invoice.irpf_percent), :class => 'TableUnderlineR', :onchange => recompute, :onkeypress => 'return ignore_newline(event)' %>&nbsp;<span class="Text13Grey">%</span></td>
+      <td class="CellTableLine numeric"><span id="invoice-irpf" class="TableResult"><%= @totals_formatter.call(-@invoice.irpf) %></span></td>
+      <td class="CellTableLine">&nbsp;</td>          
+    </tr>
+    <% end %>
+    <tr>
+      <td class="CellTableLine">&nbsp;</td>
+      <td class="Text13GreyRight">IVA</td>
+      <td class="CellTableLine numeric"><%= form.text_field :iva_percent,  :maxlength => '5', :size => 2, :id => 'invoice-iva-percent', :value => format_integer_or_decimal(@invoice.iva_percent), :class => 'TableUnderlineR', :onchange => recompute, :onkeypress => 'return ignore_newline(event)' %>&nbsp;<span class="Text13Grey">%</span></td>
+      <td class="CellTableLine numeric"><span id="invoice-iva" class="TableResult"><%= @totals_formatter.call(@invoice.iva) %></span></td>
+      <td class="CellTableLine">&nbsp;</td>          
+    </tr>
+    <tr>
+      <td class="CellTableLine">&nbsp;</td>
+      <td class="Text13GreyRight numeric"><strong>Total</strong></td>
+      <td class="CellTableLine">&nbsp;</td>
+      <td class="CellTableLine numeric"><span id="invoice-total" class="TableResultTotal"><%= @totals_formatter.call(@invoice.total) %></span></td>
+      <td class="CellTableLine">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="83%" class="CellTableLine"><%= form.text_area :footer, :class => 'TableOutline', :rows => 3, :style => 'width: 95%;' %></td>
+    <td width="17%" class="CellTableLine">&nbsp;</td>
+  </tr>
+</table>

@@ -1,0 +1,28 @@
+# == Schema Information
+# Schema version: 7
+#
+# Table name: fiscal_datas
+#
+#  id               :integer(11)   not null, primary key
+#  account_id       :integer(11)   not null
+#  name             :string(255)   not null
+#  name_for_sorting :string(255)   
+#  cif              :string(255)   not null
+#  iva_percent      :decimal(10, 2 
+#  invoice_footer   :text          
+#  irpf_percent     :decimal(10, 2 
+#  charges_irpf     :boolean(1)    
+#  logo_id          :integer(11)   
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+fiscal_data_of_quentin:
+  id: 1
+  account_id: 1
+  name: quentin
+  name_for_sorting: quentin
+  cif: A08065021
+  iva_percent: 16.00
+  invoice_footer: test
+  irpf_percent: 7.00
+  charges_irpf: 1

@@ -1,0 +1,63 @@
+SecureActions
+==============
+
+This plugin allows you to specify actions that must be run under ssl. If they are accessed 
+without ssl they will be redirected. This is similar to ssl_requirement (http://dev.rubyonrails.org/browser/plugins/ssl_requirement/). In addition, if a link is generated
+to a secure action (using url_for, link_to, etc) that link will be an http:// link.
+
+The benefit to this is: If you are only relying on the http to https redirection for security then 
+by the time you are redirecting the user to use https, data has already been transmitted insecurely.
+
+By declaring which actions you want to be "secure" than any links to those actions will have https:// links
+and if, for some reason someone tries to access that page with http:// then they are going to be redirected 
+back to https://
+
+Credit to DHH and his ssl_requirement plugin
+Also Duane Johnson and the folks on this mailing list thread: http://thread.gmane.org/gmane.comp.lang.ruby.rails/13488/focus=13493
+
+Contact me: iwarshak@stripey.net or http://www.ianwarshak.com
+
+Usage
+===============
+
+environments/production.rb (or whatever environment you want SSL enabled)
+USE_SSL=true
+
+
+class MyController < ActionController::Base
+  include SecureActions
+  require_ssl :index, :secure_form
+end
+
+
+Notes
+===============
+
+This plugin generates overrides default_url_options to *always* generate full urls instead of relative
+urls. Otherwise we would never be able to switch modes from http -> https. So if are linking to a
+secure action with link_to, the link you get is an https:// link. 
+
+The one issue that I have found with this approach is that page caching relies on url_for to generate 
+the location on the filesystem for the cached pages. Normally the cache_page method would call
+url_for(:controller => "foo", :action => "index") and get back /foo/index. It would write the response
+to CACHE_ROOT_DIR/foo/index.html
+CACHE_ROOT/
+->foo/
+-->index.html
+
+
+Since we are forcing FULL urls to be returned from url_for, this would cause ruby to try to write the
+caches page to http://foo/index.html. On a unix system you end up with something like this.
+CACHE_ROOThttp:
+-> mydomain.com/
+--> foo/
+---> index.html
+
+Obviously if your webserver (httpd, nginx) is going to have a hard time figuring this out.
+
+The solution was to add another option in url_for which is an override for only_path.
+Remember, we have set only_path to *always* return false and force the full http://host.com/controller/action
+style url.
+
+So if :override_only_path is set, we allow only_path to be set to true. Then I overrode
+the page caching methods to call url_for with this option and we get sane paths

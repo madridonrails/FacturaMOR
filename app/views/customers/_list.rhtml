@@ -1,0 +1,31 @@
+<table width="100%">
+  <colgroup>
+    <col width="75%" />
+    <col width="25%" />
+  </colgroup>
+  <%= table_header_remote :labels => ['Nombre', '&nbsp;'], :non_orderable => [1] %>
+  <% if @customers.size > 0 %>
+  <%= render :partial => 'customer', :collection => @customers %>
+  <% else %>
+  <tr>
+    <td colspan="5" class="LabelForEmptyListing">
+      No ha creado ningún cliente por ahora,
+      <%= link_to 'haga click aquí si desea crear uno', :action => 'new' %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<% if @customer_pages.page_count > 1 %>
+<p class="pagination-browser">
+  <%=
+    pagination_browser(
+      :paginator => @customer_pages,
+      :url => {
+        :order_by  => @current_order_by,
+        :direction => @current_direction
+      }
+    )
+  %>
+</p>
+<% end %>

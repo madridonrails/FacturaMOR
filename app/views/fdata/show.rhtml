@@ -1,0 +1,88 @@
+<div id="FacturaDatos">
+  <% if flash[:notice] %>
+  <p class="Text13Grey" style="padding: 10px 20px 10px 20px; margin: 10px 10px 5px 10px; background-color: #E6E3D7">
+    <%= flash[:notice] %>
+  </p>
+  <% end %>
+  <table width="100%" border="0" cellspacing="10" cellpadding="0">
+    <%= colgroup_for_data_tables %>
+    <tr>
+      <td class="Text13OrangeRight"><strong>Nombre</strong></td>
+      <td class="Text13Grey"><%=h @fiscal_data.name %></td>
+    </tr>
+    <tr>
+      <td class="Text13OrangeRight"><strong>Email</strong></td>
+      <td class="Text13Grey"><%=h @current_account.owner.email %></td>
+    </tr>
+    <tr>
+      <td class="Text13OrangeRight" valign="top"><strong>Dirección de consulta</strong></td>
+      <td class="Text13Grey" valign="top">
+        <span id="login_url_for_agencies"><%=h login_url_for_agencies %></span>
+        <%= help "Copia y envía este enlace a tu gestor si quieres<br />que pueda consultar y descargar tus facturas."%>
+        <br />
+        <%= mail_to nil, '[ Enviar por mail ]', :subject => @subject, :body => @body %>
+      </td>
+    </tr>
+    <tr>
+      <td class="Text13OrangeRight" valign="top"><strong>Logo</strong></td>
+      <td class="Text13Grey" valign="top">
+        <% if @current_account.logo %>
+        <%= account_logo %>
+        <% else %>
+        Si lo desea, puede personalizar sus facturas <%= link_to 'subiendo un logo', :controller => 'fdata', :action => 'edit' %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="Text13OrangeRight"><strong>Dirección</strong></td>
+      <td class="Text13Grey" valign="top">
+        <%= render(
+              :partial => 'shared/address',
+              :locals => {
+                :street1      => @fiscal_data.address.street1,
+                :street2      => @fiscal_data.address.street2,
+                :postal_code  => @fiscal_data.address.postal_code,
+                :city         => @fiscal_data.address.city,
+                :province     => @fiscal_data.address.province,
+                :country_name => @fiscal_data.address.country.name
+              }
+            )
+        %>
+      </td>  
+    </tr>
+    <tr>
+      <td class="Text13OrangeRight"><strong>NIF/CIF</strong></td>
+      <td class="Text13Grey"><%=h @fiscal_data.cif %></td>
+    </tr>
+    <% if @current_account.charges_irpf? %>
+    <tr>
+      <td class="Text13OrangeRight"><strong>IRPF</strong></td>
+      <td class="Text13Grey"><%= format_percent(@fiscal_data.irpf_percent) %></td>
+    </tr>    
+    <% end %>
+    <tr>
+      <td class="Text13OrangeRight"><strong>IVA</strong></td>
+      <td class="Text13Grey"><%= format_percent(@fiscal_data.iva_percent) %></td>
+    </tr>
+    <tr>
+      <td valign="top" class="Text13OrangeRight"><strong>Pie de factura</strong></td>
+      <td class="Text13Grey" valign="top"><%= x_simple_format @fiscal_data.invoice_footer %></td>
+    </tr>
+  </table>
+  
+  <% if can_write? %>
+  <br /><br />
+  <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+    <tr class="table-row-odd">
+      <td align="center" class="Text13Grey">
+        <% icon = image_tag 'icon-ModifFactura.gif' %>
+        <%= link_to "#{icon} Cambiar mi contraseña", {:controller => 'account', :action => 'send_chpass_instructions'}, :confirm => 'Se enviará un email con instrucciones al la dirección de email de contacto' %>
+      </td>
+      <td align="center" class="Text13Grey">
+        <% icon = image_tag 'icon-ModifFactura.gif' %>
+        <%= link_to "#{icon} Cambiar mis datos", :action => 'edit' %> 
+      </td>
+    </tr>
+  </table>
+  <% end %>
+</div>

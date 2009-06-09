@@ -1,0 +1,32 @@
+<div class="Title24Orange" id="titlearea">
+      Date una vuelta y verás que fácil es <%= APP_NAME %>.
+</div>
+
+<%
+  sections = [
+    ['index',         'Presentación'],
+    ['new_invoice',   'Nueva factura'],
+    ['print',         'Imprimir'],
+    ['customers',     'Clientes'],
+    ['for_customers', 'Acceso para clientes'],
+    ['for_agencies',  'Acceso para el gestor']
+  ]
+  
+  menu = []
+  sections.each do |section, label|
+    entry = '<li>'
+    if section == @current_action
+      entry << %Q{<span class="onTour">#{label}</span>}
+    else
+      entry << link_to(label, :action => section)
+    end
+    entry << '</li>'
+    menu << entry
+  end
+%>
+
+<div class="Title24Orange" id="menuTour">
+  <ul>
+    <%= menu.join('<li> | </li>') %>
+  </ul>
+</div>

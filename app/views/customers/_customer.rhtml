@@ -1,0 +1,9 @@
+<tr class="<%= cycle('table-row-even', 'table-row-odd') %>">
+  <td class="Text13Grey"><%= link_to_customer(customer) %></td>
+  <td class="Text11Orange">
+    <% if can_write? %>
+    <%= link_to_new_invoice_for('Nueva factura', customer) %> |
+    <% end %>
+    <%= link_to 'Ver facturas', :controller => 'invoices', :action => 'of', :id => customer %>
+  </td>
+</tr>

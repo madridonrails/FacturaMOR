@@ -1,0 +1,57 @@
+<span id="invoice-logo">
+  <% if %w(new create).include?(@current_action) %>
+    <%= account_logo %>
+  <% else %>
+    <%= invoice_logo(@invoice)%>
+  <% end %>
+</span>
+<% if editable %>
+  <%= hidden_field_tag 'update_logo', '' %>
+  <% if @invoice.logo_needs_update? %>
+    <span id="invoice-update-logo-link">
+      <br />
+      <%= link_to_remote '[ Actualizar logo ]', {:url => {:action => 'update_logo'}}, :class => "Text13Orange" %>
+      <% msg = <<-MSG
+      <div style="text-align: center;">
+        El logo actual es:<br /><br />
+        #{ account_logo }
+      </div>
+      MSG
+      %>
+      <%= help msg %>
+      <br />
+    </span>
+  <% end %>
+<% end %>
+
+<br />
+
+<span class="Text13Grey" id='invoice-account'>
+  <%= render :partial => 'account' %>
+</span>
+<% if editable %>
+  <%= hidden_field_tag 'update_account', '' %>
+  <% if @invoice.account_needs_update? %>
+    <span id="invoice-update-account-link">
+      <%= link_to_remote '[ Actualizar datos de emisión ]', {:url => {:action => 'update_account', :id => @invoice}}, :class => "Text13Orange" %>
+      <% address = [
+          @current_account.fiscal_data.address.street1,
+          @current_account.fiscal_data.address.street2,
+          "#{@current_account.fiscal_data.address.postal_code} #{@current_account.fiscal_data.address.city}",
+          "#{@current_account.fiscal_data.address.province} (#{@current_account.fiscal_data.address.country.name})"
+         ].delete_if(&:blank?).map{|x| h(x) }.join("<br />")  
+      %>
+      <% msg = <<-MSG
+      <div style="text-align: center;">
+      Los datos de emisión actuales son:<br /><br />
+      #{@current_account.fiscal_data.name}<br />
+      #{address}<br />
+      #{@current_account.fiscal_data.cif}
+      </div>
+      MSG
+      %>
+      <%= help msg %>
+      <br />
+    </span>
+  <% end %>
+<% end %>

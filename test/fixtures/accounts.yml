@@ -1,0 +1,59 @@
+# == Schema Information
+# Schema version: 7
+#
+# Table name: accounts
+#
+#  id               :integer(11)   not null, primary key
+#  owner_id         :integer(11)   
+#  short_name       :string(255)   not null
+#  blocked          :boolean(1)    not null
+#  name             :string(255)   not null
+#  name_for_sorting :string(255)   
+#  bank_account     :string(255)   
+#  direct_login     :boolean(1)    
+#  referer          :string(1024)  
+#  landing_page     :string(1024)  
+#  created_at       :datetime      
+#  updated_at       :datetime      
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+quentin:
+  id: 1
+  owner_id: 1
+  short_name: quentin
+  blocked: 0
+  name: Quentin
+  name_for_sorting: quentin
+  direct_login: 0
+  created_at: <%= 5.days.ago.to_s :db %> 
+
+aaron:
+  id: 2
+  owner_id: 2
+  short_name: aaron
+  blocked: 0
+  name: Aaron
+  name_for_sorting: aaron
+  direct_login: 0
+  created_at: <%= 5.days.ago.to_s :db %> 
+
+jose:
+  id: 3
+  owner_id: 3
+  short_name: jose
+  blocked: 0
+  name: Jose
+  name_for_sorting: jose
+  direct_login: 0
+  created_at: <%= 5.days.ago.to_s :db %> 
+
+manuel:
+  id: 4
+  owner_id: 4
+  short_name: manuel
+  blocked: 0
+  name: Manuel
+  name_for_sorting: manuel
+  direct_login: 0
+  created_at: <%= 5.days.ago.to_s :db %> 

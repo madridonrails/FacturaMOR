@@ -1,0 +1,27 @@
+<div class="Title24Orange" id="titlearea">
+  Crea GRATIS tu cuenta en <%= APP_NAME %> 
+</div>
+
+<div id="highlightarea2">
+  <div id="textarea">
+    <div class="Text13Grey" id="textareaLeft">
+      <p class="Title18Grey"><%= APP_NAME %>: más fácil imposible</p>
+      <p class="Text13Grey">
+        Sólo tienes que rellenar con tus datos este formulario. Los
+        campos marcados con * son obligatorios.
+      </p>
+      <div class="Title14Orange">
+        <%= image_tag 'icon-arrow2.gif' %>
+        Registro gratuito
+        <div id="divider">
+          <%= image_tag 'px.gif' %>
+        </div>
+      </div>      
+      
+      <%= render :partial => 'signup_form' %>
+    </div>
+    
+    <div id="textareaRight">
+    </div>
+  </div>
+</div>

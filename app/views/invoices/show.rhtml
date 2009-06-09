@@ -1,0 +1,105 @@
+<div id="FacturaDatos">
+  <div id="FacturaDatosDer">
+    <%= render :partial => 'right_header', :locals => {:editable => false} %>
+  </div>
+  <div id="FacturaDatosIzq">
+    <%= render :partial => 'left_header', :locals => {:editable => false} %>
+  </div>
+</div>
+<div id="FacturaCuerpo">
+  <table width="100%" border="0">
+    <colgroup>
+      <col width="7%"  />
+      <col width="52%" />
+      <col width="11%"  />
+      <col width="14%"  />
+      <col width="17%" />
+    </colgroup>
+    <thead>
+      <tr>
+        <td class="CellTableHeader">Cantidad</td>
+        <td class="CellTableHeader">Concepto</td>
+        <td class="CellTableHeader">Precio</td>
+        <td class="CellTableHeader">Total</td>
+        <td class="CellTableLine">&nbsp;</td>
+      </tr>
+    </thead>
+    <tbody id="invoice-lines">
+      <%= render :partial => 'line', :collection => @invoice.lines, :locals => { :for_edition => false } %>
+    </tbody>
+    <tbody>
+      <% if percent_printable?(@invoice.discount_percent) %>
+      <tr>
+        <td class="CellTableLine">&nbsp;</td>
+        <td class="Text13GreyRight">Descuento</td>
+        <td class="Text13Grey numeric"><%= format_percent(@invoice.discount_percent) %></td>
+        <td class="Text13Grey numeric"><span class="TableResult"><%= @totals_formatter.call(-@invoice.discount) %></span></td>
+        <td class="Text13Grey">&nbsp;</td>
+      </tr>
+      <% end %>
+      <tr>
+        <td class="CellTableLine">&nbsp;</td>
+        <td class="Text13GreyRight numeric">Base Imponible</td>
+        <td class="Text13Grey">&nbsp;</td>
+        <td class="Text13Grey numeric"><span id="invoice-tax_base" class="TableResult"><%= @totals_formatter.call(@invoice.tax_base) %></span></td>
+        <td class="Text13Grey">&nbsp;</td>
+      </tr>
+      <% if @current_account.charges_irpf? && percent_printable?(@invoice.irpf_percent) %>
+      <tr>
+        <td class="CellTableLine">&nbsp;</td>
+        <td class="Text13GreyRight">IRPF</td>
+        <td class="Text13Grey numeric"><%= format_percent(@invoice.irpf_percent) %></td>
+        <td class="Text13Grey numeric"><span class="TableResult"><%= @totals_formatter.call(-@invoice.irpf) %></span></td>
+        <td class="Text13Grey">&nbsp;</td>
+      </tr>
+      <% end %>
+      <% if percent_printable?(@invoice.iva_percent) %>
+      <tr>
+        <td class="CellTableLine">&nbsp;</td>
+        <td class="Text13GreyRight">IVA</td>
+        <td class="Text13Grey numeric"><%= format_percent(@invoice.iva_percent) %></td>
+        <td class="Text13Grey numeric"><span class="TableResult"><%= @totals_formatter.call(@invoice.iva) %></span></td>
+        <td class="Text13Grey">&nbsp;</td>          
+      </tr>
+      <% end %>
+      <tr>
+        <td class="CellTableLine">&nbsp;</td>
+        <td class="Text13GreyRight numeric"><strong>Total</strong></td>
+        <td class="Text13Grey">&nbsp;</td>
+        <td class="Text13Grey numeric"><span id="invoice-total" class="TableResultTotal"><%= @totals_formatter.call(@invoice.total) %></span></td>
+        <td class="Text13Grey">&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="87%" class="TextLightGrey"><%= x_simple_format @invoice.footer %></td>
+      <td width="13%">&nbsp;</td>
+    </tr>
+  </table>
+
+  <% code = @invoice.number %>
+  <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+    <tr class="table-row-odd">
+      <td align="center" class="Text13Grey">
+        <% icon = image_tag 'icon-crearpdf.gif' %>
+        <%= link_to "#{icon} PDF", :action => 'pdf', :id => @invoice %>
+      </td>
+      <% if can_write? %>
+      <td align="center" class="Text13Grey">
+        <% icon = image_tag 'icon-CopiarFactura.gif' %>
+        <%= link_to_new_invoice_copying("#{icon} Copiar", @invoice) %>
+      </td>
+      <td align="center" class="Text13Grey">
+        <% icon = image_tag 'icon-ModifFactura.gif' %>
+        <%= link_to "#{icon} Modificar", :action => 'edit', :id => @invoice %>
+      </td>
+      <td align="center" class="Text13Grey">
+        <% icon = image_tag 'icon-FacturaBorrar.gif' %>
+        <%= link_to_destroy_invoice("#{icon} Borrar", @invoice) %>
+      </td>        
+      <% end %>
+    </tr>
+  </table>
+</div>

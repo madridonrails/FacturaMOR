@@ -1,0 +1,7 @@
+<div id="FacturaDatos">
+  <%# no :id needed because there's only one fiscal data per account %>
+  <% form_tag({}, :multipart => true) do %>
+  <%= render :partial => 'form' %>
+  <%= render :partial => 'shared/cancel_submit', :locals => {:cancel_url => url_for(:action => 'show'), :submit_label => 'Modificar mis datos'}%>
+  <% end %>
+</div>

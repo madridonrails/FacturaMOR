@@ -1,0 +1,61 @@
+Para que la factura sea legal debe estar firmada digitalmente.
+"Una firma digital (expedida por una de las 13 entidades registradoras autorizadas por la Agencia Tributaria)"
+http://www.cincodias.com/articulo/Sentidos/millones/facturas/mes/emiten/internet/cdscdi/20051110cdscdicst_1/Tes/
+
+Aclaración sobre la validez del envío de facturas a través de correo electrónico
+http://bartolomeborrego.wordpress.com/2007/12/10/aclaracion-sobre-la-validez-del-envio-de-facturas-a-traves-de-correo-electronico/
+
+Puede ver listado de entidades emisoras de certificados de la AEAT (https://aeat.es/ycarequi.html).
+
+Los requisitos legales respecto al contenido, afectan tanto a las facturas electrónicas como a las de papel. Los requisitos legales respecto a la forma imponen determinado tratamiento en aras de garantizar la integridad y la autenticidad.
+
+Tradicionalmente, es un documento en papel, cuyo original debe ser archivado por el receptor de la factura. Habitualmente el emisor de la factura conserva una copia o la matriz en la que se registra su emisión.
+
+Normativa: Todos los europeos, en función de la adopción de la Directiva 2001/115. España, en función del Real decreto 1496/2003
+
+* Real Decreto 1496/2003 Reglamento de Facturación
+* Real Decreto 87/2005 Modificaciones al Reglamento de Facturación
+* Orden Ministerial EHA/962/2007, de 10 de abril, por la que se desarrollan determinadas disposicio nes sobre facturación telemática y conserva­ción electrónica de facturas, contenidas en el Real Decreto 1496/2003, de 28 de noviembre, por el que se aprueba el reglamento por el que se regulan las obligaciones de facturación. ( BOE, 14-abril-2007 )
+* Orden Ministerial PRE/2971/2007, de 5 de octubre, sobre la expedición de facturas por medios electrónicos cuando el destinatario de las mismas sea la Administración General del Estado u organismos públicos vinculados o dependientes de aquélla y sobre la presentación ante la Administración General del Estado o sus organismos públicos vinculados o dependientes de facturas expedidas entre particulares. (BOE 15-octubre-2007)
+
+
+La factura electrónica es la factura que cumple los mismos requisitos de la factura expedida en papel y que se expide de forma electrónica, siempre que se garantice su autenticidad y su integridad. Para garantizar la autenticidad e integridad existen 3 vías:
+La firma electrónica avanzada acompañada de un certificado cualificado y ejecutada mediante un dispositivo seguro de creación de firma.
+La remisión mediante un sistema EDI que aporte integridad y autenticidad.
+Otro sistema que a juicio del Departamento de Inspección Tributaria de la AEAT otorgue autenticidad e integridad, siempre que lo solicite el obligado tributario expedidor de la factura.
+De forma general se está aplicando el uso de la firma electrónica (en la modalidad "cualificada" o "reconocida") como elemento característico de la factura electrónica.
+
+Recientemente se ha publicado la Orden Ministerial EHA/962/2007, donde se definen los elementos necesarios para convertir las facturas recibidas en papel a su equivalente electrónico, siempre que en la operativa de digitalización se emplee un proceso que garantice que el resultado de la digitalización es imagen fiel del documento original en papel, y que el dispositivo de digitalización (scanner) produce la imagen acompañada de una Firma Electrónica Cualificada (tal como se define en la Directiva 1999/93). Al proceso que lo logra se le denomina "Digitalización Certificada".
+Además en esa normativa se indica que las facturas electrónicas se pueden transcribir a papel indicando en ellas una referencia que permita obtener la factura original en un sistema informático referenciado en un URL.
+
+PDF. El formato de firma de Adobe (derivado de PKCS#7) queda embebido dentro del formato PDF y permite asociar una imagen, por lo que es uno de los más adecuados para su visualización. La especificación del formato es la 1.6 y para la visualización se emplea Acrobat Reader v7 o Foxit PDF Reader. La apariencia de la firma es muy visual, ya que es posible asociar a la misma un gráfico como una firma digitalizada o un sello de empresa.
+
+http://es.wikipedia.org/wiki/Factura_electrónica
+http://es.wikipedia.org/wiki/Factura_electrónica#Factura_Electr.C3.B3nica_en_Espa.C3.B1a
+
+Documentos con las normativas aqui: http://www.efactura.org/
+
+ La factura electrónica es aquella que cumple lo prescrito en la Directiva 115/2001 (o las normas nacionales que la trasponen, como el RD 1496/2003), y por tanto cumple ciertos criterios de integridad y autenticidad. Y la factura digital es aquella que va acompañada de firma digital, una de las modalidades de autenticidad e integridad establecidas en la normativa. Es decir, la factura digital es un caso particular de la factura electrónica.
+
+Por tanto se puede hablar de facturación telemática y no de factura telemática, pero en cambio es correcto el uso de los términos factura y facturación junto con lo adjetivos digital y electrónica.
+
+
+Formatos de factura electronica
+===============================
+
+* PDF. Cuando el destinatario es un particular, un profesional o una PYME cuyo único interés sea guardar electrónicamente la factura, pero no evitar volver a teclear los datos ya que con este formato no se facilita el ingreso de los datos de la factura en el ordenador de destino.
+
+* EDIFACT. Sintaxis más usual cuando el envío se realiza de ordenador a ordenador, lo cual quiere decir que el destinatario es una empresa que tiene capacidad tecnológica para tratar de forma automatizada la información recibida, de manera que los datos se ingresan en el ordenador de destino de forma automática. La elaboración de este estándar es desarrollada principalmente por la organización GS1(unión de las antiguas EAN y UCC) para empresas de Gran Consumo, Ferretería y Bricolaje, etc, con la colaboración de Odette para el sector de Automoción. En España, es AECOC (GS1 España) la representante de GS1 y la encargada de desarrollar y velar por el cumplimiento de los estándares EDI.
+
+* XML. Cuando el envío es de ordenador a ordenador, puede también utilizarse este tipo de sintaxis. Es un lenguaje extendido principalmente en Norteamérica que poco a poco va ganando terreno en Europa. Existen diversas variantes cuya convergencia se espera en el marco de las Naciones Unidas. Las más importantes son UBL respaldado por OASIS y GS1 respaldado por la organización del mismo nombre. En España la variante facturae (procedente de CCI-AEAT), respaldada por el Centro de Cooperación Interbancaria,la Agencia Tributaria y el Ministerio de Industria, Turismo y Comercio es la más difundida, y cuenta con sistemas de traducción a y desde UBL.
+
+
+Formatos de la Firma Electrónica en la Factura Electrónica
+==========================================================
+
+* Para cada formato existe una forma peculiar de codificar la firma electrónica:
+XML. El formato de firma electrónica se denomina XAdES y se rige por la especificación TS 101 903. De las diferentes modalidades previstas por la norma, la más recomendable es la ES-XL que incluye información sobre el tiempo en el que se llevó a cabo la firma electrónica e información sobre la validez del certificado electrónico cualificado que la acompaña.
+
+* EDIFACT. La firma se lleva a cabo mediante las Cabeceras y Pies de Seguridad, aunque existe un mensaje EDI específico para ello, de ser necesario (AUTACK). La firma es un mensaje CMS (derivado de PKCS#7). En rigor, si la factura es EDIFACT, no es precisa la firma según una de las posibilidades que ofrecen el RD 1496/2003 y la Directiva 2001/115.
+
+* PDF. El formato de firma de Adobe (derivado de PKCS#7) queda embebido dentro del formato PDF y permite asociar una imagen, por lo que es uno de los más adecuados para su visualización. La especificación del formato es la 1.6 y para la visualización se emplea Acrobat Reader v7 o Foxit PDF Reader. La apariencia de la firma es muy visual, ya que es posible asociar a la misma un gráfico como una firma digitalizada o un sello de empresa.

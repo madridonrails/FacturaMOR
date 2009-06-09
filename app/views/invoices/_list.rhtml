@@ -1,0 +1,41 @@
+<table width="100%">
+  <colgroup>
+    <col width="12%" />
+    <col width="12%" />
+    <col width="38%" />
+    <col width="14%" />
+    <col width="12%" />
+    <col width="12%" />
+  </colgroup>
+  <%= table_header_remote :labels => ['Número', 'Fecha', 'Cliente', 'Importe', 'Cobrada', '&nbsp;'], :non_orderable => [5] %>
+  <% if @invoices.size > 0 %>
+    <%= render :partial => 'invoice', :collection => @invoices %>
+  <% else%>
+  <tr>
+    <td colspan="5" class="LabelForEmptyListing">
+      <% if @current_action == 'list' %>
+      No ha emitido ninguna factura por ahora,
+      <%= link_to 'haga click aquí si desea crear una', :action => 'new' %>
+      <% elsif @current_action == 'pending' %>
+      No tiene ninguna factura pendiente de cobro
+      <% elsif @current_action == 'of' %>
+      No ha emitido ninguna factura para <%= link_to_customer @customer %> por ahora
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<% if @invoice_pages.page_count > 1 %>
+<p class="pagination-browser">
+  <%=
+    pagination_browser(
+      :paginator => @invoice_pages,
+      :url => {
+        :order_by  => @current_order_by,
+        :direction => @current_direction
+      }
+    )
+  %>
+</p>
+<% end %>
+

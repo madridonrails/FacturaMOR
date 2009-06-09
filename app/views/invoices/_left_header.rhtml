@@ -1,0 +1,86 @@
+<%#
+  In this header editing and showing are quite different, we keep them here together
+  to have a good modularization of invoice views and be able to easily reflect changes
+  on both if they need to stay in sync.
+%>
+
+<% if editable %>
+
+<p>
+  <label for="invoice_number"><span class="Title13Grey">Factura</span></label><br />
+  <%= form.text_field :number, :size => 11, :onkeypress => 'return ignore_newline(event)' %>
+  <% if @last_invoices.empty? %>
+  <br />
+  <em class="TextLightGrey">
+    Ésta es tu primera factura, por favor cambia el número de factura (arriba) si usas otro patrón
+    de numeración, <%= APP_NAME %> tratará de aprenderlo y utilizarlo en adelante.
+  </em>
+  <% else %>
+  <%
+    tip = '<table>'
+    tip << "<tr style=\\'font-size: 8pt; line-height: 2pt;\\'><td>Número</td><td>Fecha</td></tr>"
+    @last_invoices.each do |i|
+      tip << "<tr style=\\'font-size: 8pt; line-height: 2pt;\\'>"
+      tip << "<td>#{escape_javascript(h(i.number))}</td>"
+      tip << "<td>#{escape_javascript(format_date(i.date))}</td>"
+      tip << "</tr>"
+    end
+    tip << "</table>"
+  %>
+  <span id="label_for_last_numbers" class="Text13Grey" onmouseover="Tip('<%= tip %>')">[ Últimas facturas ]</span>
+  <% end %>
+  <%= errors_for_attr :invoice, :number %>
+</p>
+<p>
+  <label for="invoice_date"><span class="Title13Grey">Fecha</span></label><br />
+  <%# we need to set the date value this way so that the date picker accepts it as a valid date %>
+  <%= form.text_field :date, :size => 11, :value => format_date(@invoice.date), :onkeypress => 'return ignore_newline(event)' %>
+  <script type="text/javascript" charset="utf-8">
+    /* Note closeCallback is a custom addition to DatePicker */
+    new DatePicker({
+      relative: 'invoice_date',
+      language: 'sp',
+      clickCallback: hide_customer_selector_if_explorer,
+      closeCallback: show_customer_selector_if_explorer
+    });
+  </script>
+  <%= errors_for_attr :invoice, :date %>
+</p>
+<p>
+  <label for="invoice_customer_id"><span class="Title13Grey">Cliente</span></label><br />
+  <%= render :partial => 'invoices/customer' %>
+</p>
+  
+<% else %>
+
+<p>
+  <label for="invoice_number"><span class="Title13Grey">Factura</span></label><br />
+  <span class="Text13Grey"><%=h @invoice.number %></span>
+</p>
+<p>
+  <label for="invoice_date"><span class="Title13Grey">Fecha</span></label><br />
+  <span class="Text13Grey"><%=h format_date_long(@invoice.date) %></span>
+</p>
+<p>
+  <label for="invoice_customer_id"><span class="Title13Grey">Cliente</span></label><br />
+  <span class="Text13Grey">
+    <%=h @invoice.customer_name %>
+    <br />
+    <%= render(
+          :partial => 'shared/address',
+          :locals => {
+            :street1      => @invoice.customer_street1,
+            :street2      => @invoice.customer_street2,
+            :postal_code  => @invoice.customer_postal_code,
+            :city         => @invoice.customer_city,
+            :province     => @invoice.customer_province,
+            :country_name => @invoice.customer_country_name
+          }
+        )
+    %>
+    <br />
+    <%=h @invoice.customer_cif %>
+  </span>
+</p>
+
+<% end %>

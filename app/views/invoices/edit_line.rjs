@@ -1,0 +1,7 @@
+repaint(page)
+
+page['invoice_new_line_amount'].value      = @line_to_edit.amount
+page['invoice_new_line_description'].value = @line_to_edit.description
+page['invoice_new_line_price'].value       = @line_to_edit.price
+
+page['invoice_new_line_amount'].focus

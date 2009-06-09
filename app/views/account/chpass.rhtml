@@ -1,0 +1,23 @@
+<div class="Title24Orange" id="titlearea">
+  Cambio de contraseña de acceso
+</div>
+
+<div id="highlightareaAyuda">
+  <div id="textareaAyuda">
+    <% if not @user.errors.empty? %>
+    <p class="error"><%= @user.errors.full_messages.join("<br />") %></p>
+    <% end %>
+    <% form_tag do -%>
+    <%= hidden_field_tag 'chpass_token', @chpass_token %>
+    <p class="Text13Grey">
+      <span class="Title14Orange">Contraseña</span><br />
+      <%= password_field_tag 'password', nil, :class => 'formField' %><br /><br />
+      <span class="Title14Orange">Confirmación contraseña</span><br />
+      <%= password_field_tag 'password_confirmation', nil, :class => 'formField' %><br /><br />
+      <span class="CellTablebuttonL">
+        <%= submit_tag 'Establecer nueva contraseña', :class => 'button' %>
+      </span>
+    </p>
+    <% end -%>
+  </div>
+</div>

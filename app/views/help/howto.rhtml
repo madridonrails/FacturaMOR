@@ -1,0 +1,85 @@
+<div class="Title24Orange" id="titlearea">
+  <%= link_to 'Ayuda', :action => 'index' %>
+  <span class="Text18Orange">&gt;</span>
+  ¿Cómo se hace una factura?
+</div>
+<div id="highlightareaAyuda">
+  <div id="textareaAyuda">
+    <div class="Text13Grey HelpItem">
+      <span class="Title18OrangeHelp" id="exportar">¿Cómo se hace una factura?</span>
+      <p>Toda factura tiene que tener una serie de datos mínimos para que
+        la misma sea válida. Es muy importante, por ejemplo, que aparezca el
+        número de factura, que servirá para su identificación, y la fecha en la
+        que se realiza, así como los datos básicos, tanto de la persona que emite
+        la factura como de aquélla a la que va dirigida. Estos son el nombre,
+        domicilio e identificador fiscal.</p>
+
+      <p>Por otro lado debemos incluir una descripción de los servicios prestados
+        por los que se emite la factura, así como el importe de los mismos.
+        Por último, se ha de detallar el tipo de IVA y de IRPF que se aplica,
+        y el importe resultante.</p>
+        
+      <p><%= image_tag 'factura.gif' %></p>
+      
+      <p>Por lo tanto una factura se estructuraría de la siguiente manera:
+      <ul>
+        <li>Datos identificativos del profesional que presta los servicios:
+          nombre completo, domicilio e identificador fiscal.</li>
+
+        <li>Identificación del documento o número de factura: todas las facturas
+          han de ir numeradas de forma correlativa en un mismo año, es decir, no
+          se puede saltar de la número 7 a la 12, por ejemplo.</li>
+
+        <li>Fecha de la factura: también hay que tener en cuenta que las fechas
+          de las facturas han de ir de acuerdo a su numeración, es decir, la
+          factura 7 no puede tener una fecha posterior a la 12.</li>
+
+        <li>Datos de la persona o empresa a la que va dirigida la factura: nombre
+          completo, dirección o razón social e identificador fiscal.</li>
+
+        <li>Concepto de la factura: breve descripción de los servicios prestados,
+          normalmente desglosado por líneas.</li>
+
+        <li>Importe de la operación: se detalla el importe total, es decir, la
+          remuneración a percibir sin aplicar ningún tipo de impuestos ni
+          descuentos.</li>
+
+        <li>Descuento: si quieres fidelizar o aplicar alguna condición especial
+          a alguno de tus clientes puedes aplicarles un descuento señalando el
+          mismo en tu factura.</li>
+        
+        <li>Base imponible: el importe de la operación menos el descuento si lo
+          hubiere es la cantidad sobre la que se aplican los impuestos.</li>
+
+        <li>Retención del IRPF: cantidad resultante de aplicar al importe anterior
+          una retención que, actualmente, es del 15% en la mayoría de los casos.
+          Algunos profesionales y sociedades no efectúan esta retención.</li> 
+
+        <li>Importe del IVA: cantidad resultante de aplicar a la base imponible
+          un 16%, aunque hay una serie de actividades que están exentas de IVA o
+          tributan en diferente porcentaje.</li>
+
+        <li>Cantidad total a percibir: la suma del importe inicial, menos la
+          retención del IRPF, más el importe del IVA.</li>
+
+        <li>Forma de pago: si es mediante domiciliación bancaria hay que incluir
+          el número de cuenta al que queremos que se nos ingrese la cantidad
+          solicitada.</li>
+        </ul>
+      </p>
+      <p>
+        <span class="Title18OrangeHelp" id="exportar">¿Cómo me ayuda <%= APP_NAME %>?</span></p>
+      <p>
+        <%= link_to APP_NAME, '/' %> automatiza y te asiste en todo lo
+        anterior de manera que factures en un santiamén. El siguiente
+        vídeo explica cómo se factura en <%= link_to APP_NAME, '/' %>.
+        ¡Coloca encima el ratón y dale al play!
+      </p>
+      <div id="highlightareaTour2">
+        <%= video_object_tag 'nueva_factura.flv', 744, 510, :auto_play => false %>
+      </div>
+    </div>
+    
+    <%= registrate_gratis %>
+  </div>
+</div>

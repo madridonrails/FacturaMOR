@@ -1,0 +1,7 @@
+repaint(page)
+
+page['invoice_new_line_amount'].value = 1
+page['invoice_new_line_description'].clear
+page['invoice_new_line_price'].clear
+
+page['invoice_new_line_description'].focus

@@ -1,0 +1,10 @@
+<% invoice = invoice_of_customer %>
+<tr class="<%= cycle('table-row-even', 'table-row-odd') %>">
+  <td><%= link_to_invoice(invoice) %></td>
+  <td><%=h invoice.date %></td>
+  <td><%= link_to_customer(invoice.customer) %></td>
+  <td class="num"><%=h invoice.total %> €</td>
+  <td class="actions">
+    <%= link_to 'PDF', :action => 'pdf', :id => invoice %>
+  </td>
+</tr>

@@ -1,0 +1,2 @@
+module BackofficeHelper
+end

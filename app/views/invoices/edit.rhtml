@@ -1,0 +1,16 @@
+<% form_for :invoice, :url => {:action => 'edit', :id => @invoice}, :html => {:id => 'invoice-form'} do |form| %>
+<div id="FacturaDatos">
+  <div id="FacturaDatosDer">
+    <%= render :partial => 'right_header', :locals => {:editable => true, :form => form} %>
+  </div>
+  <div id="FacturaDatosIzq">
+    <%= render :partial => 'left_header', :locals => {:editable => true, :form => form} %>
+  </div>
+  <div style="clear: both;"></div>
+</div>
+<div id="FacturaCuerpo">
+  <%= render :partial => 'body_editor', :locals => {:form => form} %>
+  <%= render :partial => 'shared/cancel_submit', :locals => {:cancel_url => url_for(:action => 'list'), :submit_label => 'Modificar factura'} %>
+</div>
+<% end %>
+<%= render :partial => 'redbox_for_new_customer' %>

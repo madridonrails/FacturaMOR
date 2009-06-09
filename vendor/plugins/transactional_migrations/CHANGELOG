@@ -1,0 +1,9 @@
+[REVISION 20061202]
+
+[CHANGED] Use Rails 1.2 alias_method_chain.
+
+[CHANGED] Separate modules into individual files.
+
+[REVISION 200608014]
+
+[NEW] Initial version.

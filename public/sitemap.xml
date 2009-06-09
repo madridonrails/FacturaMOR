@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<url>
+  <loc>http://www.facturagem.madridonrails.com/</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.facturagem.madridonrails.com/tour</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.facturagem.madridonrails.com/help</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.facturagem.madridonrails.com/public/contact</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.facturagem.madridonrails.com/tour/new_invoice</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.facturagem.madridonrails.com/tour/print</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.facturagem.madridonrails.com/tour/customer</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.facturagem.madridonrails.com/tour/for_customers</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.facturagem.madridonrails.com/tour/for_agencies</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.facturagem.madridonrails.com/help/about</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.facturagem.madridonrails.com/help/invoices</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.facturagem.madridonrails.com/help/general</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.facturagem.madridonrails.com/tour/</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>https://www.facturagem.madridonrails.com/public/signup</loc>
+  <priority>0.5</priority>
+  <changefreq>daily</changefreq>
+</url>
+</urlset>

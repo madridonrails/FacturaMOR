@@ -1,0 +1,49 @@
+<span id="invoice-customer">
+  <% if @current_action == 'edit' %>
+    <%= customer_selector :invoice, :customer_id, @current_account, 'Modificar cliente', nil %>
+  <% else %>
+    <%= customer_selector :invoice, :customer_id, @current_account, 'Seleccione un cliente', @invoice.customer_id %>
+  <% end %>
+  <%= 
+    observe_field(
+       'invoice_customer_id',
+       # We need the controller because this partial is rendered coming from customers as well.
+       :url      => {:controller => 'invoices', :action => 'update_customer'},
+       :submit   => 'invoice-form',
+       :before   => "$('customer-data').hide()",
+       :complete => "$('customer-data').show()"
+     )
+  %>
+  <%= link_to_redbox '[ Nuevo ]', 'redbox-for-new-customer', :class => "Text13Orange" %>
+  <%= errors_for_attr :invoice, :customer %>
+  <br /><br />
+  <span id="customer-data">
+    <% if @invoice.customer.blank? %>
+    <span id="customer-name" class="Text13Grey"><!-- for Ajax --></span>
+    <br />
+    <span id="customer-address"><!-- for Ajax --></span>
+    <br />
+    <span id="customer-cif" class="Text13Grey"><!-- for Ajax --></span>
+    <% else %>
+    <span id="customer-name" class="Text13Grey"><%= @invoice.customer_name %></span><br />
+    <span id="customer-address">
+      <%= render(
+            :partial => 'shared/address',
+            :locals => {
+              :street1      => @invoice.customer_street1,
+              :street2      => @invoice.customer_street2,
+              :postal_code  => @invoice.customer_postal_code,
+              :city         => @invoice.customer_city,
+              :province     => @invoice.customer_province,
+              :country_name => @invoice.customer_country_name
+            }
+          )
+      %>
+    </span>
+    <br />
+    <span id="customer-cif" class="Text13Grey">
+      <%=h @invoice.customer_cif %>
+    </span>
+    <% end %>
+  </span>
+</span>

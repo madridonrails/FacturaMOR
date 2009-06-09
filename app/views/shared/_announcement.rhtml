@@ -1,0 +1,4 @@
+<div id="announcement">
+  <p><%= @announcement %></p>
+  <p><%= link_to_remote "Haz click aquí para ocultarme", :url => {:controller => 'announcement', :action => 'hide'}, :method => :get %></p>
+</div>

@@ -1,0 +1,57 @@
+<div class="Title24Orange" id="titlearea">Login</div>
+
+<div id="highlightareaAyuda">
+  <div id="textareaAyuda"> 
+    <p class="Title18Grey">Rellena los campos a continuaci&oacute;n para acceder a tu cuenta <%= APP_NAME %>:</p>
+    <p class="error"><%= flash[:notice]%></p>
+    <% form_tag do -%>
+    <table width="500" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td class="Title14Orange">Email</td>
+      </tr>
+      <tr>
+        <td class="Text13Grey">
+          <%= text_field_tag 'login', params[:login], :class => "formField autocomplete" %>
+        </td>
+      </tr>
+    </table>
+
+    <br />
+    
+    <table width="500" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td class="Title14Orange">Contrase&ntilde;a</td>
+      </tr>
+      <tr>
+        <td class="Text13Grey">
+          <%= password_field_tag 'password', nil, :class => "formField" %>
+        </td>
+      </tr>
+    </table>
+
+    <br />
+
+    <table width="500"  border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>
+          <span class="CellTablebuttonL">
+            <%= submit_tag 'Acceder', :class => 'button' %>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <% end %>
+
+    <br />
+
+    <table width="500"  border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td class="Text13Grey">
+          <%= link_to 'Olvidé mi contraseña', {:action => 'send_chpass_instructions'}, :confirm => 'Se enviará un email con instrucciones al la dirección de email de contacto' %>
+        </td>
+      </tr>
+    </table>
+    
+    <br />
+  </div>
+</div>

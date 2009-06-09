@@ -1,0 +1,19 @@
+if @customer.errors.empty?
+  page.call 'RedBox.close'
+  page.replace_html 'invoice-customer', :partial => 'invoices/customer'
+  page << "$('invoice-discount-percent').value = #{@invoice.customer.discount_percent || "''"};"
+  page << "$('invoice-discount-percent').onchange();"
+else
+  # The HTML here is coupled with the one in the errors_for_attr helper.
+  @customer.attributes.each do |a, v|
+    span_id = "errors_for_customer_#{a}"
+    err = @customer.errors.on(a)
+    if err
+      err = [err] if err.is_a?(String)
+      page.replace_html span_id, %Q{<br />#{err.join("<br />")}}
+    else
+      page << %Q{if ($("#{span_id}")) { $("#{span_id}").update("");}}
+    end
+  end
+end
+  

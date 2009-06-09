@@ -1,0 +1,82 @@
+# == Schema Information
+# Schema version: 7
+#
+# Table name: invoices
+#
+#  id                    :integer(11)   not null, primary key
+#  url_id                :string(255)   not null
+#  account_id            :integer(11)   not null
+#  customer_id           :integer(11)   not null
+#  number                :string(255)   not null
+#  date                  :date          
+#  year                  :integer(11)   
+#  account_name          :string(255)   not null
+#  account_cif           :string(255)   not null
+#  account_street1       :string(255)   
+#  account_street2       :string(255)   
+#  account_city          :string(255)   
+#  account_province      :string(255)   
+#  account_postal_code   :string(255)   
+#  account_country_id    :integer(11)   
+#  account_country_name  :string(255)   
+#  customer_name         :string(255)   not null
+#  customer_cif          :string(255)   not null
+#  customer_street1      :string(255)   
+#  customer_street2      :string(255)   
+#  customer_city         :string(255)   
+#  customer_province     :string(255)   
+#  customer_postal_code  :string(255)   
+#  customer_country_id   :integer(11)   
+#  customer_country_name :string(255)   
+#  irpf_percent          :decimal(10, 2 
+#  irpf                  :decimal(10, 2 
+#  iva_percent           :decimal(10, 2 
+#  iva                   :decimal(10, 2 
+#  discount_percent      :decimal(10, 2 
+#  discount              :decimal(10, 2 
+#  total                 :decimal(10, 2 
+#  paid                  :boolean(1)    not null
+#  notes                 :text          
+#  footer                :text          
+#  logo_id               :integer(11)   
+#  created_at            :datetime      
+#  updated_at            :datetime      
+#  tax_base              :decimal(10, 2 
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+invoice_1:
+  id: 1
+  url_id: 2009_0001
+  account_id: 1
+  customer_id: 1
+  number: 2009_0001
+  date: <%= Time.now.to_s :db %>
+  year: 2009
+  account_name: quentin
+  account_cif: A2345678C
+  account_street1: Plaza Mayor
+  account_street2: Plaza Mayor
+  account_city: Zamora
+  account_province: Zamora
+  account_postal_code: 49001
+  account_country_id: 71
+  account_country_name: España
+  customer_name: Juan
+  customer_cif: A58818501
+  customer_street1: Calle San Andres
+  customer_street2: Calle San Andres
+  customer_city: Zamora
+  customer_province: Zamora
+  customer_postal_code: 49002
+  customer_country_id: 71
+  customer_country_name: España
+  irpf_percent: 16.00
+  irpf: 470.40
+  discount_percent: 2.00
+  discount: 60.00
+  total: 3410.40
+  paid: 0
+  notes: tests
+  footer: tests
+  tax_base: 2940.00

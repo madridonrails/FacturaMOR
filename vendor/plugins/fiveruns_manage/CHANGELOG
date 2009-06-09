@@ -1,0 +1,21 @@
+v1.0.4. Add better support for Passenger.  Previously a Rails app with no active pool instances would be considered Down
+        by the FiveRuns Manage service.  The client now recognizes the app as quiescent.
+        Certain files were not being cleaned up when the process exited, due to Passenger's reaping of the child instance.
+        Fix instrumentation breakage on Edge Rails due to API changes.
+
+v1.0.3. More work on thread synchronization, where the reporter thread grabs the data cache.
+        Fix collection of root metrics with a context.
+
+v1.0.2. Fixed several issues: Some controller-level metrics were using the wrong context.  Certain Rails errors were being logged with no context. In Rails 2.0.2 and earlier, rendered partials were occasionally getting recorded twice.  In Rails 2.1, rendered partials were not getting recorded at all.
+
+v1.0.1. Handle another cross-thread synchronization issue, update configuration and installation documentation.
+
+v1.0.0. Handle a cross-thread synchronization issue. 
+
+v0.99.0. Make framework agnostic, revamp tests, rename `fiveruns_manage' (sans dash), extend Rails 1.2.6->2.1 support.
+
+v0.9.3. Change to mixins for instrumentation that's robust across Rails reloads, remove fiveruns-core dependency.
+
+v0.9.2. Full instrumentation with DSL-style hooks.
+
+v0.9.0. Basic features.

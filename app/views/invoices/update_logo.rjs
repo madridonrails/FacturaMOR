@@ -1,0 +1,3 @@
+page.replace_html 'invoice-logo', account_logo
+page << "$('update_logo').value = 1;"
+page.visual_effect :fade, 'invoice-update-logo-link'

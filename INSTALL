@@ -1,0 +1,102 @@
+Ruby
+----
+This application was developed with Ruby 1.8.4 and Ruby 1.8.5.
+
+Before compiling Ruby from sources be sure that the zlib dev files are installed,
+you can test whether zlib support is compiled running
+
+  ruby -rzlib -e1
+
+If you get a silent prompt back it is installed, otherwise you see an error.
+
+The readline library should be available as well, otherwise script/console won't work.
+
+Rails comes bundled
+-------------------
+Rails 1.2.2 comes bundled under vendor, no need to install it separately.
+Don't worry if there's a system-wide Rails, if so it is ignored.
+
+Rubygems
+--------
+
+Some dependencies are installed using the gem library manager:
+
+  wget http://rubyforge.org/frs/download.php/11289/rubygems-0.9.0.tgz
+  tar xzf rubygems-0.9.0.tgz
+  cd rubygems-0.9.0
+  sudo ruby setup.rb
+
+ImageMagick
+-----------
+No known version requirement.
+
+
+Gems
+----
+mini_magick (1.2.0)
+fastercsv (1.2.0)
+rexml-expansion-fix
+
+
+mod_xsendfile (for production mode)
+-----------------------------------
+http://tn123.ath.cx/mod_xsendfile/
+
+
+MySQL
+-----
+Stable version of MySQL 5.
+
+It is very important to set UTF-8 as charset of the database explicitly,
+like this:
+
+  drop database if exists gastosmini;
+  create database gastosmini character set utf8;
+  grant all on gastosmini.* to 'username'@'localhost' identified by 'password';
+
+or the equivalent if you use a wizard.
+
+The database is created with a task, see rake -T
+
+Once the very database has been created, you need to create (or update) the
+schema running
+
+  rake db:migrate
+
+from the application root directory. If you need to update the production schema set RAILS_ENV to 'production' before. For instance in sh-like shells:
+
+  export RAILS_ENV=production && rake db:migrate
+  
+
+Configuration files
+-------------------
+You need to create
+
+  config/facturagem.yml
+  config/database.yml
+  config/mailer.rb
+  config/local_config.rb (configuration of exception_notifier,google_analytics and others constants)
+
+taking their corresponding .example as a starting point.
+
+
+exception_notification (http://www.agilewebdevelopment.com/plugins/exception_notifier)
+--------------------------------------------------------------------------------------
+The Exception Notifier plugin provides a mailer object and a default set of
+templates for sending email notifications when errors occur in a Rails
+application. The plugin is configurable, allowing programmers to specify:
+
+* the sender address of the email
+* the recipient addresses
+* the text used to prefix the subject line
+
+google_analytics
+----------------
+Google Analytics is a free service offered by Google that generates 
+detailed statistics about the visitors to a website
+
+LaTeX
+-----
+We need pdflatex in path (install tetex-bin, tetex-extra, latex-ucs, latex-xcolor, cm-super in debians, 
+or MiKTeX on Windows). The package cm-super makes fonts in PDFs look prettier, but it is necessary to have 
+a working instance for development.

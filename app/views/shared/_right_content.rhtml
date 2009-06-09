@@ -1,0 +1,11 @@
+<% if can_read_all? %>
+<!-- "pending" is an aux ID for Ajax updates of this box -->
+<div id="pending">
+  <%= render :partial => 'shared/top_status' %>
+</div>
+<div id="bottStatus"></div>
+<% end %>
+
+<%= render :partial => 'shared/top_links' %>
+
+<div id="bottLinks"></div>

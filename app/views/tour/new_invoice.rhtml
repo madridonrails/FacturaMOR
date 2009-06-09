@@ -1,0 +1,47 @@
+<%= render :partial => 'menu' %>
+
+<div id="highlightareaTour1">
+  <div id="highlightareaTour2">
+    <%= video_object_tag 'nueva_factura.flv', 744, 510 %>
+  </div>
+  
+  <div id="textareaTour">
+    <span class="Title18DarkGrey">Haz una nueva factura en menos de un minuto</span>
+    <br />
+    
+    <div class="Text13Grey">
+      <ul>
+        <li>
+          <strong>Numeración automágica:</strong> Ponle la numeración que quieras a tus facturas,
+          <%= APP_NAME %> tratará de entender tu patrón y sugerirte el número sin más a partir de tu
+          segunda factura, sin necesidad de que configures nada. El número de factura es
+          modificable en cualquier caso. Junto a su casilla podrás también
+          consultar cuáles fueron los números de tus últimas facturas.
+        </li>
+        <li>
+          <strong>Elige la fecha:</strong> <%= APP_NAME %> pone por defecto la fecha de hoy, pero
+          si la quieres cambiar sólo debes hacer click en ella y seleccionarla en el
+          calendario.
+        </li>
+        <li>
+          <strong>Elige el cliente:</strong> Selecciona el cliente de la lista, y si no
+          está créalo en esa misma página.
+        </li>
+        <li>
+          <strong>Añade las líneas:</strong> Sin necesidad de complicadas tablas, <%= APP_NAME %>
+          aprende tus productos y sus precios sobre la marcha. Al empezar a escribir un concepto
+          que coincida parcialmente con alguno de otra factura verás que <%= APP_NAME %> te ofrece la
+          posibilidad de entrarlo directamente, y en tal caso preselecciona el último precio que le
+          consta, que puedes cambiar si lo deseas. Pero tú mandas, puedes escribir como
+          producto lo que quieras al precio que sea, siempre.
+        </li>
+        <li>
+          <strong>Ya está:</strong> Emite la factura y ya está lista para ser consultada, imprimida,
+          compartida por acceso seguro, etc.
+        </li>
+      </ul>
+    </div>
+
+    <%= registrate_gratis %>
+  </div>
+</div>

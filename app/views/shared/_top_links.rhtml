@@ -1,0 +1,37 @@
+<div id="topLinks" class="Text13Grey">
+  <span class="Title18Grey">Ir a...</span>
+  <br /><br />
+  <% if can_write? %>
+  <% icon = image_tag 'icon-crear.gif', :width => 25, :height => 20 %>
+  <%= link_to "#{icon} Hacer una factura", :controller => 'invoices', :action => 'new', :from => nil, :id => nil %>
+  <br />
+  <% end %>
+  
+  <% icon = image_tag 'icon-list.gif', :width => 25, :height => 20 %>
+  <% if can_read_all? %>
+  <%= link_to "#{icon} Listado de facturas", :controller => 'invoices', :action => 'list' %>
+  <% else %>
+  <%= link_to "#{icon} Listado de facturas", :controller => 'invoices', :action => 'of', :id => @guest[:customer] %>
+  <% end %>
+  <br />
+  
+  <% icon = image_tag 'icon-listP.gif', :width => 25, :height => 20 %>
+  <%= link_to "#{icon} Listado de facturas pendientes", :controller => 'invoices', :action => 'pending' %>
+  <br /><br />
+  
+  <% if can_write? %>
+  <% icon = image_tag 'icon-crearC.gif', :width => 25, :height => 20 %>
+  <%= link_to "#{icon} Crear un cliente", :controller => 'customers', :action => 'new' %>
+  <br />
+  <% end %>
+  
+  <% if can_read_all? %>
+  <% icon = image_tag 'icon-listC.gif', :width => 25, :height => 20 %>
+  <%= link_to "#{icon} Listado de clientes", :controller => 'customers', :action => 'list' %>
+  <br />
+  <% end %>
+  <br />
+
+  <% icon = image_tag 'icon-ExportFacturas.gif' %>
+  <%= link_to "#{icon} Exportar facturas", :controller => 'invoices', :action => 'export' %>
+</div>

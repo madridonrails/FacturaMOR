@@ -1,14 +1,49 @@
 class CustomersController < ApplicationController
   include LoginUrlHelper
-  
+
   before_filter :ensure_can_write, :except => [:index, :list, :show]
   before_filter :ensure_can_read_all, :only => [:index, :list]
-  before_filter :find_customer, :except => [:list, :new, :create_for_invoice]
-  
+  before_filter :find_customer, :except => [:list, :new, :create_for_invoice, :export_clientes]
+
   def index
     redirect_to :action => 'list'
   end
-  
+
+  def export_clientes
+    return if request.get?
+
+    customers = @current_account.customers
+
+    # These charsets are expected to be common in our users.
+    charset = (request_from_a_mac? ? "MAC" : "ISO-8859-1")
+    norm = lambda {|str| Iconv.conv("#{charset}//IGNORE", "UTF-8", str)}
+
+    col_sep = (request_from_windows? ? "," : ';')     # Excel understands this one automatically
+    row_sep = (request_from_windows? ? "\r\n" : "\n") # in case people treat it as a text file
+
+    csv_string = FasterCSV.generate(:col_sep => col_sep, :row_sep => row_sep) do |csv|
+      header  = %w(Numero Nombre CIF Calle1 Calle2 Ciudad Provincia CP Pais notas Descuento%)
+      csv << header.map {|h| norm.call(h)}
+
+      customers.each do |i|
+        row  = [i.id]
+        row += [norm.call(i.name)]
+        row += [i.cif]
+        row += [i.address.street1]
+        row += [i.address.street2]
+        row += [i.address.city]
+        row += [i.address.province]
+        row += [i.address.postal_code]
+        row += [i.address.country.name]
+        row += [norm.call(i.notes)]
+        row += [commify(i.discount_percent)]
+        csv << row
+      end
+    end
+
+    send_data(csv_string, :type => "text/csv; charset=#{charset}", :filename => "export_clientes.csv")
+  end
+
   # Customers listing.
   def list
     @current_order_by  = order_by(1, 0)
@@ -24,14 +59,14 @@ class CustomersController < ApplicationController
     )
     render :partial => 'list' if request.xhr?
   end
-  
+
   # Customer details.
   def show
     return logout unless can_read_customer?(@customer)
     @subject = ERB.new(CONFIG['customer_login_url_mail_subject']).result(binding)
     @body    = ERB.new(CONFIG['customer_login_url_mail_body']).result(binding)
   end
-  
+
   # This is the action that gets called from the redbox in the
   # invoice form.
   def create_for_invoice
@@ -56,7 +91,7 @@ class CustomersController < ApplicationController
       redirect_to :action => 'list' if @customer.save
     end
   end
-  
+
   # Customer edition, GET and POST.
   def edit
     return if request.get?
@@ -78,7 +113,7 @@ class CustomersController < ApplicationController
       redirect_to :action => 'show', :id => @customer
     end
   end
-  
+
   def find_customer
     customer = nil
     unless params[:id].blank?
@@ -91,6 +126,6 @@ class CustomersController < ApplicationController
     @customer = customer
   end
   protected :find_customer
-    
+
   #this_controller_only_responds_to_https
 end

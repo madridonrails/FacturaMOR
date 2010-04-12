@@ -80,7 +80,15 @@ class FdataController < ApplicationController
       render :nothing
     end
   end
-  
+
+  def removelogo
+    if @fiscal_data.logo
+      @fiscal_data.logo = nil
+      @fiscal_data.save
+    end
+    redirect_to :action => 'show'
+  end
+
   def find_fiscal_data
     @fiscal_data = @current_account.fiscal_data
   end

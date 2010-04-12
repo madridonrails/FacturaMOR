@@ -325,10 +325,10 @@ BODY
   end
   private :find_invoice
 
-  def commify(n)
-    n.to_s.tr('.', ',')
-  end
-  private :commify
+#  def commify(n)
+#    n.to_s.tr('.', ',')
+#  end
+#  private :commify
 
   def export
     return if request.get?
@@ -362,7 +362,7 @@ BODY
     invoices = @current_account.invoices.find(:all, :conditions => conditions)
 
     # These charsets are expected to be common in our users.
-    charset = (request_from_a_mac? ? "MacRoman" : "ISO-8859-1")
+    charset = (request_from_a_mac? ? "MAC" : "ISO-8859-1")
     norm = lambda {|str| Iconv.conv("#{charset}//IGNORE", "UTF-8", str)}
 
     col_sep = (request_from_windows? ? "," : ';')     # Excel understands this one automatically
@@ -393,6 +393,96 @@ BODY
     send_data(csv_string, :type => "text/csv; charset=#{charset}", :filename => "export_facturas_#{@current_account.short_name}.csv")
   end
 
+
+  def export_full
+    return if request.get?
+
+    period_conditions = case params[:period]
+      when 'current_quarter'
+        date_from = Time.now.beginning_of_quarter.to_date
+        date_to   = date_from.to_time.months_since(2).end_of_month.to_date
+        {:date => date_from..date_to}
+      when 'last_quarter'
+        date_from = Time.now.months_ago(3).beginning_of_quarter.to_date
+        date_to   = date_from.to_time.months_since(2).end_of_month.to_date
+        {:date => date_from..date_to}
+      when 'current_year'
+        {:year => Date.today.year}
+      when 'last_year'
+        {:year => Date.today.year - 1}
+      else
+        {}
+    end
+
+    customer_conditions = if can_read_all?
+      # we do not need to check customer_id against injection because we constrain afterwards
+      params[:customer_id].blank? ? {} : {:customer_id => params[:customer_id].to_i}
+    else
+      {:customer_id => @guest[:customer].id}
+    end
+
+    conditions = period_conditions.merge(customer_conditions)
+    conditions = nil if conditions.blank? # an empty hash gives invalid SQL
+    invoices = @current_account.invoices.find(:all, :conditions => conditions)
+
+    # These charsets are expected to be common in our users.
+    charset = (request_from_a_mac? ? "MAC" : "ISO-8859-1")
+    norm = lambda {|str| Iconv.conv("#{charset}//IGNORE", "UTF-8", str)}
+
+    col_sep = (request_from_windows? ? "," : ';')     # Excel understands this one automatically
+    row_sep = (request_from_windows? ? "\r\n" : "\n") # in case people treat it as a text file
+
+    wants_lines = !params[:detail_level].blank?
+    csv_string = FasterCSV.generate(:col_sep => col_sep, :row_sep => row_sep) do |csv|
+      header  = %w(Número Fecha NombreEmisor CIFEmisor Calle1Emisor Calle2Emisor CiudadEmisor ProvinciaEmisor CPEmisor PaisEmisor IDCliente NombreCliente CifCliente Calle1Cliente Calle2Cliente CiudadCliente ProvinciaCliente CPCliente PaisCliente notas footer Descuento% Descuento BaseImponible IVA% IVA)
+      header += %w(IRPF% IRPF)
+      header += %w(Total Pagada)
+      header += %w(NºLínea Cantidad Concepto Precio TotalLinea) if wants_lines
+      csv << header.map {|h| norm.call(h)}
+
+      invoices.sort.each do |i|        
+        row  = [i.number]
+        row += [format_date(i.date)]
+        row += [norm.call(i.account_name)]
+        row += [i.account_cif]
+        row += [i.account_street1]
+        row += [i.account_street2]
+        row += [i.account_city]
+        row += [i.account_province]
+        row += [i.account_postal_code]
+        row += [Country.find_by_id(i.account_country_id).name]
+        row += [i.customer_id]
+        row += [norm.call(i.customer_name)]
+        row += [i.customer_cif]
+        row += [i.customer_street1]
+        row += [i.customer_street2]
+        row += [i.customer_city]
+        row += [i.customer_province]
+        row += [i.customer_postal_code]
+        row += [Country.find_by_id(i.customer_country_id).name]
+        row += [norm.call(i.notes)]
+        row += [norm.call(i.footer)]
+        row += [commify(i.discount_percent)]
+        row += [commify(i.discount)]
+        row += [commify(i.tax_base), commify(i.iva_percent), commify(i.iva)]
+        row += [commify(i.irpf_percent), commify(i.irpf)]
+        row += [commify(i.total), norm.call((i.paid? ? 'Sí' : 'No'))]
+        if wants_lines
+          line_count = 1
+          i.lines.each do |line|
+            csv << row + [line_count,  commify(line.amount), norm.call(line.description), commify(line.price), commify(line.total)]
+            line_count+=1;
+          end
+        else
+          csv << row
+        end
+      end
+    end
+
+    send_data(csv_string, :type => "text/csv; charset=#{charset}", :filename => "export_facturas_#{@current_account.short_name}.csv")
+  end
+
+ 
   # ---------------------------------------------------- #
   #                                                      #
   #  Remote methods to support invoice creation/edition  #

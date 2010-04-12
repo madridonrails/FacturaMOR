@@ -55,7 +55,13 @@ class ApplicationController < ActionController::Base
     end
     false
   end
-  
+
+
+  def commify(n)
+    n.to_s.tr('.', ',')
+  end
+
+
   def ensure_can_write
     can_write? ? true : logout
   end

@@ -1,0 +1,14 @@
+<%# This is an excepcional form which has nothing to do with AR, a plain-old form is enough %>
+<div id="FacturaDatos">
+  <div class="Text13Grey" style="padding: 30px;">
+    <div class="Title18Grey">Exportación de Clientes.</div>
+    <%= form_tag %>
+      <p>
+        <span class="Title13Grey">BACKUP COMPLETO de los datos de clientes </span><br />
+      </p>
+      <p>
+        <%= submit_tag 'Exportar clientes', :class => 'button' %>
+      </p>
+    <%= end_form_tag %>
+  </div>
+</div>

@@ -27,11 +27,15 @@
   
   <% if can_read_all? %>
   <% icon = image_tag 'icon-listC.gif', :width => 25, :height => 20 %>
-  <%= link_to "#{icon} Listado de clientes", :controller => 'customers', :action => 'list' %>
+  <%= link_to "#{icon} Listado de clientes", :controller => 'customers', :action => 'list' %><br/>
+  <%= link_to "#{icon} Exportar clientes (backup)", :controller => 'customers', :action => 'export_clientes' %>
   <br />
   <% end %>
   <br />
 
   <% icon = image_tag 'icon-ExportFacturas.gif' %>
-  <%= link_to "#{icon} Exportar facturas", :controller => 'invoices', :action => 'export' %>
+  <%= link_to "#{icon} Exportar facturas", :controller => 'invoices', :action => 'export' %><br/>
+  <% if can_read_all? %>
+  <%= link_to "#{icon} Exportar facturas (backup)", :controller => 'invoices', :action => 'export_full' %>
+  <% end %>
 </div>

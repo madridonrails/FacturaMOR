@@ -28,6 +28,7 @@
       <td class="Text13Grey" valign="top">
         <% if @current_account.logo %>
         <%= account_logo %>
+        <%= link_to 'quitar logo', :controller => 'fdata', :action => 'removelogo' %>
         <% else %>
         Si lo desea, puede personalizar sus facturas <%= link_to 'subiendo un logo', :controller => 'fdata', :action => 'edit' %>
         <% end %>

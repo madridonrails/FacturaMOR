@@ -20,7 +20,7 @@ module ApplicationHelper
   def facturagem_logo
     image_tag 'logo.png', :alt => "#{APP_NAME}: facturación fácil", :title => "#{APP_NAME}: facturación fácil"
   end
-  
+
   # Returns the logo of the application already linked to the (public) home.
   def facturagem_logo_linked_to_home
     link_to facturagem_logo, "http://www.#{account_domain}"

@@ -16,7 +16,10 @@ module FacturagemUtils
   # The trick with iconv does not work in Acens due to the version of the library there.
   def self.normalize(str)
     return '' if str.nil?
-    n = str.chars.downcase.strip.to_s
+    n = ''
+    str.chars.each do |c|
+      n << c.downcase.strip.to_s
+    end
     n.gsub!(/[àáâãäåāă]/,    'a')
     n.gsub!(/æ/,            'ae')
     n.gsub!(/[ďđ]/,          'd')

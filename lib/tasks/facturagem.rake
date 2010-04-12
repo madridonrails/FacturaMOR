@@ -3,6 +3,12 @@ require 'erb'
 
 namespace :facturagem do
 
+  desc "cleanup old sessions from the database"
+  task :expire_sessions => :environment do |t|
+    CGI::Session::ActiveRecordStore::Session.destroy_all( ['updated_at < ?', 1.days.ago ] )
+  end #task do
+
+
   desc "creates the schema of the database"
   task :create_schema => :environment do
     config = ActiveRecord::Base.configurations[RAILS_ENV]
